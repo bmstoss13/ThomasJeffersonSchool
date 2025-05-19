@@ -1,12 +1,9 @@
 import './App.css'
-import Header from './components/header'
+import Dashboard from './routes/dashboard'
 
 function App() {
   return(
-    <>
-    <Header />
-      <h1>Login</h1>
-    </>
+    <Dashboard/>
   )
 }
 

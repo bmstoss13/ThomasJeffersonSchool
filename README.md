@@ -1,5 +1,5 @@
 # Thomas Jefferson App
 
 ## Links
-Trello:
+Trello: /n
 Figma:

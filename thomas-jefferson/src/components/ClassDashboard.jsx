@@ -23,6 +23,31 @@ const mockClasses = [
         <Typography variant="subtitle1" gutterBottom>
           Overview of all classes, teachers, and student counts
         </Typography>
+
+        <Grid container spacing={2} sx={{ my: 2 }}>
+        <Grid item xs={12} sm={4}>
+          <Paper sx={{ p: 2, textAlign: 'center' }}>
+            <Typography variant="h6">Total Classes</Typography>
+            <Typography variant="h5">{mockClasses.length}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Paper sx={{ p: 2, textAlign: 'center' }}>
+            <Typography variant="h6">Total Teachers</Typography>
+            <Typography variant="h5">
+              {new Set(mockClasses.map((c) => c.teacher)).size}
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Paper sx={{ p: 2, textAlign: 'center' }}>
+            <Typography variant="h6">Total Students</Typography>
+            <Typography variant="h5">
+              {mockClasses.reduce((acc, curr) => acc + curr.students, 0)}
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
         </Box>
     );
 }

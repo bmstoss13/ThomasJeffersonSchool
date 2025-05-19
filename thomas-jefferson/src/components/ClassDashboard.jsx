@@ -48,6 +48,44 @@ const mockClasses = [
           </Paper>
         </Grid>
       </Grid>
+
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Button variant="contained" color="success" startIcon={<AddIcon />}>
+          Create
+        </Button>
+      </Box>
+
+      <Paper>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell><b>Teacher</b></TableCell>
+              <TableCell><b>Grade</b></TableCell>
+              <TableCell><b>Students</b></TableCell>
+              <TableCell><b>Room #</b></TableCell>
+              <TableCell align="right"><b>Actions</b></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {mockClasses.map((cls, idx) => (
+              <TableRow key={idx}>
+                <TableCell>{cls.teacher}</TableCell>
+                <TableCell>{cls.grade}</TableCell>
+                <TableCell>{cls.students}</TableCell>
+                <TableCell>{cls.room}</TableCell>
+                <TableCell align="right">
+                  <IconButton color="primary"><EditIcon /></IconButton>
+                  <IconButton color="error"><DeleteIcon /></IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+
+      <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+        <Pagination count={3} page={1} />
+      </Box>
         </Box>
     );
 }

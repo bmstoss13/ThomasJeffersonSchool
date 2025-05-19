@@ -1,6 +1,6 @@
 import React from 'react'
 
-const list = ({items, onEdit, onDelete}) => {
+const List = ({items, onEdit, onDelete}) => {
     
     return (
         <div>
@@ -19,4 +19,4 @@ const list = ({items, onEdit, onDelete}) => {
     )
 }
 
-export default list
+export default List

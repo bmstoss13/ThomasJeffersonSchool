@@ -3,8 +3,7 @@ import { Box, Typography, Grid, Paper, Table, TableHead, TableBody, TableCell, T
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/config';
+
 
 const mockClasses = [
     { teacher: 'Ms. Johnson', grade: 1, students: 24, room: 101 },
@@ -50,8 +49,15 @@ const mockClasses = [
       </Grid>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-        <Button variant="contained" color="success" startIcon={<AddIcon />}>
-          Create
+      <Button
+        variant="contained"
+        startIcon={<AddIcon />}
+        sx={{
+            backgroundColor: '#095256',
+            color: '#ffffff'
+        }}
+        >
+        Create
         </Button>
       </Box>
 

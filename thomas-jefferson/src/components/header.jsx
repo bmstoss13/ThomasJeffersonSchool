@@ -6,7 +6,8 @@ const Header = () => {
         <div>
             <Link to='/'>Dashboard</Link>
             <Link to='/login'>Login</Link>
-            <Link to='/students'>Student Directory</Link>
+            <Link to='/students'>Students</Link>
+            <Link to='/teachers'>Teachers</Link>
         </div>
     )
 }

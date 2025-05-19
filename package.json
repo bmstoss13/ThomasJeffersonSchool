@@ -5,6 +5,15 @@
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
     "firebase": "^11.7.3",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.6.0",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }

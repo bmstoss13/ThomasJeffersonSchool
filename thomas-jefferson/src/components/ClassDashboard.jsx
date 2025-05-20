@@ -22,14 +22,32 @@ const ClassDashboard = () => {
   return (
     <div>
       <Header />
-    <Box sx={{ p: 4,  pt: 8, backgroundColor: '#EFD9CE', minHeight: '100vh', textAlign: 'left', }}>
-
-    <Box sx={{ textAlign: 'left', mb: 4 }}>  
+      <Box sx={{ p: 4, pt: 10, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+  {/* Header Row */}
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+      mb: 4,
+    }}
+  >
+       <Box>
       <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
       <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
     </Box>
+
+    <Button
+      variant="contained"
+      sx={{ backgroundColor: '#715B68', color: 'white' }}
+      startIcon={<AddIcon />}
+    >
+      Create
+    </Button>
+  </Box>
+
       {/* Summary Boxes */}
-      <Grid container spacing={2} sx={{ my: 2 }}>
+      <Grid container spacing={2} sx={{ my: 4, width: '100%' }}>
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, textAlign: 'center' }}>
             <Typography variant="h6">Total Classes</Typography>
@@ -52,17 +70,11 @@ const ClassDashboard = () => {
         </Grid>
       </Grid>
 
-      {/* Create Button */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-        <Button variant="contained" color="success" startIcon={<AddIcon />}>
-          Create
-        </Button>
-      </Box>
 
       {/* Class Table */}
-      <Paper>
-      <Box sx={{ mt: 4, overflowX: 'auto' }}>
-        <Table sx={{ width: '100%' }} aria-label="class table">
+      <Box sx={{ mt: 4, width: '100%' }}>
+      <Paper sx={{ width: '100%', overflowX: 'auto', mt: 2 }}>
+            <Table sx={{ minWidth: 650 }} aria-label="class table">
           <TableHead>
             <TableRow>
               <TableCell><b>Teacher</b></TableCell>
@@ -87,14 +99,15 @@ const ClassDashboard = () => {
             ))}
           </TableBody>
         </Table>
+        </Paper> 
     </Box>
-    </Paper>
+    
 
       {/* Pagination Placeholder */}
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
         <Pagination count={3} page={1} />
       </Box>
-    </Box>
+      </Box>
     </div>
   );
 };

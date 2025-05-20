@@ -4,7 +4,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { db } from '../../firebase';
+import Header from './Header';
 
 const ClassDashboard = () => {
   const [classes, setClasses] = useState([]);
@@ -19,6 +20,8 @@ const ClassDashboard = () => {
   }, []);
 
   return (
+    <div>
+      <Header />
     <Box sx={{ p: 4, backgroundColor: '#f4dcd5', minHeight: '100vh' }}>
       <Typography variant="h4" fontWeight="bold">Class Dashboard</Typography>
       <Typography variant="subtitle1" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
@@ -88,6 +91,7 @@ const ClassDashboard = () => {
         <Pagination count={3} page={1} />
       </Box>
     </Box>
+    </div>
   );
 };
 

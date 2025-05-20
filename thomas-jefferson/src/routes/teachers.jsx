@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../components/header'
 import List from '../components/list'
 import { getAllTeachers, deleteTeacher, updateTeacher, } from "../utils/CRUDteachers"
+import '../styles/students.css'
 
 const Teachers = () => {
     const [teachers, setTeachers] = useState([])
@@ -25,14 +26,16 @@ const Teachers = () => {
         fetchTeachers()
     }, []);
     return (
-        <div>
+        <div className="students-container">
             <Header/>
-            <h1>Teacher Directory</h1>
+            <div className="students-content">
+            <h1 className="students-name">Teacher Directory</h1>
             <List
                 items={teachers}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
             />
+            </div>
         </div>
     )
 }

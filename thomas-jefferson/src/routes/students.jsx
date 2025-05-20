@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../components/header'
 import List from '../components/list'
+import { getAllStudents, deleteStudent, updateStudent, } from "../utils/CRUDstudents"
 
 const Students = () => {
     const [students, setStudents] = useState([])
-    const fetchStudents = () => {
-        setStudents();
+
+    const fetchStudents = async() => {
+        const data = await getAllStudents();
+        setStudents(data);
         //firebase logic
     }
-    const handleEdit = () => {
+    const handleEdit = async(id) => {
+        await deleteStudent(id);
+        fetchStudents();
         //firebase logic
     }
-    const handleDelete = () => {
+    const handleDelete = (student) => {
+        console.log("editing", student)
         //firebase logic
     }
+
+    useEffect(() => {
+        fetchStudents()
+    }, []);
     return (
         <div>
             <Header/>

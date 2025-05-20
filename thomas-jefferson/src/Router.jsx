@@ -5,8 +5,11 @@ import Login from "./routes/login";
 import Students from "./routes/students";
 import Teachers from "./routes/teachers";
 import Calendar from "./routes/calendar";
+import ClassDashboard from './components/ClassDashboard';
+
 
 export const router = createBrowserRouter([
+
   { path: "/", element: <App /> }, //in app now, i am pointing to the log in page to begin with
   { path: "/dashboard", element: <Dashboard /> },
   { path: "/login", element: <Login /> },
@@ -14,3 +17,4 @@ export const router = createBrowserRouter([
   { path: "/teachers", element: <Teachers /> },
   { path: "/calendar", element: <Calendar /> },
 ]);
+

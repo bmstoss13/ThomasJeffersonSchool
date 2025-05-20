@@ -1,0 +1,72 @@
+.dashboardWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 6rem;
+    padding: 2rem;
+}
+
+.imageContainer {
+    width: 100%;
+    max-width: 700px;
+}
+
+.myImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contentContainer {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.adminButtonsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.adminButton {
+    width: 100%;
+    font-size: 16px;
+    padding: 1rem;
+    background-color: #715B68 !important;
+    transition: background-color 0.5s ease;
+    color: white !important;
+    border-radius: 10px;
+}
+
+.adminButton:hover {
+    background-color: #a0a9a0 !important;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboardWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imageContainer,
+    .contentContainer {
+        max-width: 100%;
+    }
+
+    .adminButtonsContainer {
+        grid-template-columns: 1fr;
+    }
+}

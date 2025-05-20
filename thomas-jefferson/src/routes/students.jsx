@@ -6,12 +6,12 @@ import { getAllStudents, deleteStudent, updateStudent, } from "../utils/CRUDstud
 const Students = () => {
     const [students, setStudents] = useState([])
 
-    const fetchStudents = async() => {
+    const fetchStudents = async () => {
         const data = await getAllStudents();
         setStudents(data);
         //firebase logic
     }
-    const handleEdit = async(id) => {
+    const handleEdit = async (id) => {
         await deleteStudent(id);
         fetchStudents();
         //firebase logic
@@ -26,7 +26,7 @@ const Students = () => {
     }, []);
     return (
         <div>
-            <Header/>
+            <Header />
             <h1>Student Directory</h1>
             <List
                 items={students}

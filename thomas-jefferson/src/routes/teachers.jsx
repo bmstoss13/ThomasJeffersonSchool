@@ -4,7 +4,7 @@ import Header from '../components/header'
 const Teachers = () => {
     return (
         <div>
-            <Header/>
+            <Header />
             <h1>Teacher Directory</h1>
         </div>
     )

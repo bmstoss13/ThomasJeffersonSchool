@@ -7,10 +7,10 @@ import Teachers from "./routes/teachers";
 import Calendar from "./routes/calendar";
 
 export const router = createBrowserRouter([
-    { path: "/", element: <App/>},
-    { path: "/dashboard", element: <Dashboard/>},
-    { path: "/login", element: <Login/>},
-    { path: "/students", element: <Students/>},
-    { path: "/teachers", element: <Teachers/>},
-    { path: "/calendar", element: <Calendar/>},
-  ]);
+  { path: "/", element: <App /> }, //in app now, i am pointing to the log in page to begin with
+  { path: "/dashboard", element: <Dashboard /> },
+  { path: "/login", element: <Login /> },
+  { path: "/students", element: <Students /> },
+  { path: "/teachers", element: <Teachers /> },
+  { path: "/calendar", element: <Calendar /> },
+]);

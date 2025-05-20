@@ -7,12 +7,12 @@ import '../styles/students.css'
 const Students = () => {
     const [students, setStudents] = useState([])
 
-    const fetchStudents = async() => {
+    const fetchStudents = async () => {
         const data = await getAllStudents();
         setStudents(data);
         //firebase logic
     }
-    const handleEdit = async(id) => {
+    const handleEdit = async (id) => {
         await deleteStudent(id);
         fetchStudents();
         //firebase logic
@@ -26,6 +26,7 @@ const Students = () => {
         fetchStudents()
     }, []);
     return (
+
         <div className="students-container">
             <Header/>
             <div className="students-content">

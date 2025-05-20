@@ -26,6 +26,7 @@ const Teachers = () => {
         fetchTeachers()
     }, []);
     return (
+
         <div className="students-container">
             <Header/>
             <div className="students-content">
@@ -36,6 +37,7 @@ const Teachers = () => {
                 onDelete={handleDelete}
             />
             </div>
+
         </div>
     )
 }

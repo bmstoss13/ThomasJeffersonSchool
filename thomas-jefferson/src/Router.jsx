@@ -5,6 +5,8 @@ import Login from "./routes/login";
 import Students from "./routes/students";
 import Teachers from "./routes/teachers";
 import Calendar from "./routes/calendar";
+import ClassDashboard from './components/ClassDashboard';
+
 
 export const router = createBrowserRouter([
     { path: "/", element: <App/>},
@@ -13,4 +15,5 @@ export const router = createBrowserRouter([
     { path: "/students", element: <Students/>},
     { path: "/teachers", element: <Teachers/>},
     { path: "/calendar", element: <Calendar/>},
+    { path: "/classes", element: <ClassDashboard /> },
   ]);

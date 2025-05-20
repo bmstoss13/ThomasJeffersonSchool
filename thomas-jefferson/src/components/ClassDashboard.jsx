@@ -22,10 +22,12 @@ const ClassDashboard = () => {
   return (
     <div>
       <Header />
-    <Box sx={{ p: 4, backgroundColor: '#f4dcd5', minHeight: '100vh' }}>
-      <Typography variant="h4" fontWeight="bold">Class Dashboard</Typography>
-      <Typography variant="subtitle1" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
+    <Box sx={{ p: 4,  pt: 8, backgroundColor: '#EFD9CE', minHeight: '100vh', textAlign: 'left', }}>
 
+    <Box sx={{ textAlign: 'left', mb: 4 }}>  
+      <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
+      <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
+    </Box>
       {/* Summary Boxes */}
       <Grid container spacing={2} sx={{ my: 2 }}>
         <Grid item xs={12} sm={4}>
@@ -59,7 +61,8 @@ const ClassDashboard = () => {
 
       {/* Class Table */}
       <Paper>
-        <Table>
+      <Box sx={{ mt: 4, overflowX: 'auto' }}>
+        <Table sx={{ width: '100%' }} aria-label="class table">
           <TableHead>
             <TableRow>
               <TableCell><b>Teacher</b></TableCell>
@@ -84,7 +87,8 @@ const ClassDashboard = () => {
             ))}
           </TableBody>
         </Table>
-      </Paper>
+    </Box>
+    </Paper>
 
       {/* Pagination Placeholder */}
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>

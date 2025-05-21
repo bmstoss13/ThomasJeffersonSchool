@@ -6,17 +6,28 @@ import AddIcon from '@mui/icons-material/Add';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import Header from './Header';
+import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
+
 
 const ClassDashboard = () => {
   const [classes, setClasses] = useState([]);
 
+  const fetchClasses = async () => {
+    const data = await getAllClasses();
+    setClasses(data);
+  };
+
+  const handleDelete = async (id) => {
+    await deleteClass(id);
+    fetchClasses();
+  };
+
+  const handleEdit = (cls) => {
+    console.log('Editing class:', cls);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, 'classes'));
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setClasses(data);
-    };
-    fetchData();
+    fetchClasses();
   }, []);
 
   return (

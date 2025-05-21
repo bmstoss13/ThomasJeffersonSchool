@@ -13,3 +13,25 @@ export const deleteClass = async (id) => {
 export const updateClass = async (id, data) => {
     await updateDoc(doc(db, "classes", id), data);
 };
+
+export const getClassById = async (id) => {
+    const classRef = doc(db, 'classes', id);
+    const classSnap = await getDoc(classRef);
+  
+    if (!classSnap.exists()) return null;
+  
+    const classData = classSnap.data();
+  
+    const studentsData = await Promise.all(
+      (classData.students || []).map(async (ref) => {
+        const studentSnap = await getDoc(ref);
+        return { id: studentSnap.id, ...studentSnap.data() };
+      })
+    );
+  
+    return {
+      id: classSnap.id,
+      ...classData,
+      students: studentsData,
+    };
+  };

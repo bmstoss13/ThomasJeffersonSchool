@@ -7,6 +7,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import Header from './Header';
 import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
+import { Link } from 'react-router-dom';
+
 
 
 const ClassDashboard = () => {
@@ -89,7 +91,9 @@ const ClassDashboard = () => {
             <Table sx={{ minWidth: 650 }} aria-label="class table">
           <TableHead>
             <TableRow>
+              
               <TableCell><b>Teacher</b></TableCell>
+              
               <TableCell><b>Grade</b></TableCell>
               <TableCell><b>Students</b></TableCell>
               <TableCell><b>Room #</b></TableCell>
@@ -99,13 +103,17 @@ const ClassDashboard = () => {
           <TableBody>
             {classes.map((c) => (
               <TableRow key={c.id}>
+                component={Link}
+                to={`/class/${c.id}`}
+                hover
+                style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
                 <TableCell>{c.teacher}</TableCell>
                 <TableCell>{c.grade}</TableCell>
                 <TableCell>{c.students}</TableCell>
                 <TableCell>{c.room}</TableCell>
                 <TableCell align="right">
-                  <IconButton color="black"><EditIcon /></IconButton>
-                  <IconButton color="black"><DeleteIcon /></IconButton>
+                  <IconButton color="primary" onClick={(e) => { e.stopPropagation(); handleEdit(c); }}><EditIcon /></IconButton>
+                  <IconButton color="error" onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
                 </TableCell>
               </TableRow>
             ))}

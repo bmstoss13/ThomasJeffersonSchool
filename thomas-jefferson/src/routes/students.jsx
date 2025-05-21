@@ -64,14 +64,7 @@ const Students = () => {
                         +
                     </Button>
                 </div>
-                <div className="students-content">
-                    <List
-                        items={students}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                    />
-                </div>
-            <div className="search-container">
+                <div className="search-container">
                 <TextField
                     fullWidth
                     variant="outlined"

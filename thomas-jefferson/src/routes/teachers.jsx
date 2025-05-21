@@ -3,9 +3,12 @@ import Header from '../components/header'
 import List from '../components/list'
 import { getAllTeachers, deleteTeacher, updateTeacher, } from "../utils/CRUDteachers"
 import '../styles/students.css'
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Teachers = () => {
     const [teachers, setTeachers] = useState([])
+    const nav = useNavigate()
 
     const fetchTeachers = async() => {
         const data = await getAllTeachers();
@@ -29,6 +32,7 @@ const Teachers = () => {
 
         <div className="students-container">
             <Header/>
+            <Button className="adminButton" variant="contained" color="success" onClick={() => nav('/teachers/new')}>+ Add New Teacher</Button>
             <div className="students-content">
             <h1 className="students-name">Teacher Directory</h1>
             <List

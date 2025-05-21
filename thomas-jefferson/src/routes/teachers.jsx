@@ -25,6 +25,7 @@ const Teachers = () => {
         //firebase logic
     }
     const handleEdit = (teacher) => {
+        nav(`/teachers/${teacher.id}/edit`)
         console.log("editing", teacher)
         //firebase logic
     }

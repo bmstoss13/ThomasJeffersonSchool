@@ -1,5 +1,5 @@
 import { db } from "../firebase"
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase/firestore"
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, getDoc} from "firebase/firestore"
 
 const teacherRef = collection(db, "teachers");
 

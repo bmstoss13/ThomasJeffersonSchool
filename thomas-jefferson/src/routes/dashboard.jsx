@@ -40,9 +40,6 @@ const Dashboard = () => {
                         <Button className="adminButton" variant="contained" color="success" onClick={() => navigate('/teachers/new')}>
                             Add New Teacher
                         </Button>
-                        <Button className="adminButton" variant="contained" color="secondary">
-                            Admin Tools
-                        </Button>
                     </div>
                 </div>
             </div>

@@ -74,7 +74,7 @@ body {
     border-radius: 10px;
 }
 
-.adminButton-s:hover{
+.adminButton-s:hover {
     background-color: #0f777c !important;
 }
 
@@ -87,7 +87,7 @@ body {
 }
 
 .search-input {
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(255, 255, 255);
     border-radius: 8px;
 }
 

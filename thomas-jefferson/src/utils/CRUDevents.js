@@ -3,11 +3,26 @@ import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase
 
 const eventRef = collection(db, "events");
 
-// export const getAllEvents = async () => {
-//   const data = await getDocs(studentRef)
-//   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-// };
+export const getAllEvents = async () => {
+    try{
+        
+        const data = await getDocs(eventRef);
+        console.log("Successful fetch");
+        return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    }
+    catch(e){
+        console.log("There was an error: " , e);
+    }
+  
+};
 
 export const addEvent = async (event) => {
-  return await addDoc(eventRef, event)
+    try{
+        console.log("Successful addition");
+        return await addDoc(eventRef, event);
+  
+    }catch(e){
+        console.log("There was an error: " , e);
+    }
+  
 };

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import EventForm from '../components/eventform';
 import { addEvent } from '../utils/CRUDevents';
+import Header from '../components/header';
 
 export default function CreateEvent() {
   const navigate = useNavigate();
@@ -11,9 +12,13 @@ export default function CreateEvent() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <>
+      <Header/>
+      <div style={{ padding: '2rem' }}>
       <h2>Create New Event</h2>
         <EventForm onSubmit={handleCreate} />
-    </div>
+      </div>
+    </>
+    
   );
 }

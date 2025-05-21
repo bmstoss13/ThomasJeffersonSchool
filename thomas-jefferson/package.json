@@ -20,7 +20,7 @@
     "@schedule-x/events-service": "^2.31.0",
     "@schedule-x/react": "^2.31.0",
     "@schedule-x/theme-default": "^2.31.0",
-    "firebase": "^11.7.3",
+    "firebase": "^11.8.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0"

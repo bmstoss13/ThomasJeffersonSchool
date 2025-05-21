@@ -62,10 +62,10 @@ const Students = () => {
                     value={searchTerm}
                     onChange={handleSearch}
                     InputProps={{
-                            startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon />
-                            </InputAdornment>
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <SearchIcon />
+                        </InputAdornment>
                         ),
                         className: "search-input"
                     }}

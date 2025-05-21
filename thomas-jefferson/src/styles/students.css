@@ -42,6 +42,17 @@
     border-radius: 10px;
 }
 
+.search-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    background-color: rgb(225, 225, 225);
+    border-radius: 8px;
+}
+
 @media (max-width: 768px) {
     .students-container {
         margin-top: 3rem;

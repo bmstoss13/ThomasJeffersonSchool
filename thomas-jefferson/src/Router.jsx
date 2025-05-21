@@ -3,8 +3,8 @@ import App from "./App";
 import Dashboard from "./routes/dashboard";
 import Login from "./routes/login";
 import Students from "./routes/students";
-import CreateStudent  from './routes/CreateStudent';
-import EditStudent    from './routes/EditStudent';
+import CreateStudent from './routes/CreateStudent';
+import EditStudent from './routes/EditStudent';
 import Teachers from "./routes/teachers";
 import CreateTeacher from "./routes/CreateTeacher";
 import Calendar from "./routes/calendar";
@@ -21,10 +21,11 @@ export const router = createBrowserRouter([
   { path: '/students/new', element: <CreateStudent /> },
   { path: '/students/:id/edit', element: <EditStudent /> },
   { path: "/teachers", element: <Teachers /> },
-  { path: "/teachers/new", element: <CreateTeacher />},
+  { path: "/teachers/new", element: <CreateTeacher /> },
+  { path: "/classes", element: <ClassDashboard /> }, //added classes dashboard
   { path: "/calendar", element: <Calendar /> },
-  { path: "/calendar/cevent", element: <CreateEvent/>}
-  
+  { path: "/calendar/cevent", element: <CreateEvent /> }
+
 
 ]);
 

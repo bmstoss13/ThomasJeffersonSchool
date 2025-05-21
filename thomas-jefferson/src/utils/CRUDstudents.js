@@ -1,11 +1,15 @@
 import { db } from "../firebase"
-import { collection, getDoc, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase/firestore"
+import { collection, getDoc, getDocs, addDoc, updateDoc, deleteDoc, doc, onSnapshot} from "firebase/firestore"
 
 const studentRef = collection(db, "students");
 
 export const getAllStudents = async () => {
   const data = await getDocs(studentRef)
-  return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  const students = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  return students.sort((a, b) => {
+    const lastNameComparison = a.last_name.localeCompare(b.last_name)
+    return lastNameComparison !== 0 ? lastNameComparison : a.first_name.localeCompare(b.first_name)
+  })
 };
 
 export const getStudent = async (id) => {

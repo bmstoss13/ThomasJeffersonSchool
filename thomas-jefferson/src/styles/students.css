@@ -15,7 +15,7 @@
 
 .students-title {
     margin-bottom: 20px;
-    font-size: 36px;
+    font-size: 48px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     width: 100%;
@@ -35,6 +35,6 @@
     }
 
     .students-title {
-        font-size: 28px;
+        font-size: 48px;
     }
 }

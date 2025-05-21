@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Header from '../components/header';
 import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
 import { createViewWeek, createViewMonthGrid } from '@schedule-x/calendar';
@@ -6,9 +6,11 @@ import '@schedule-x/theme-default/dist/calendar.css';
 import { createEventModalPlugin } from '@schedule-x/event-modal';
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop';
 import { createEventsServicePlugin } from '@schedule-x/events-service'
+import { createCurrentTimePlugin } from '@schedule-x/current-time'
 import '../styles/eventForm.css';
 import { useNavigate } from 'react-router-dom';
 import { getAllEvents } from '../utils/CRUDevents';
+import EventModal from '../components/EventModal';
 
 function Calendar() {
   const navigate = useNavigate();
@@ -21,33 +23,41 @@ function Calendar() {
   const [showDebug, setShowDebug] = useState(false);
   const eventsServicePlugin = createEventsServicePlugin();
 
+  // Custom component wrapper to pass calendar API
+  const CustomEventModal = useCallback(
+    (props) => {
+      return <EventModal {...props} calendarApi={calendarRef.current} />;
+    },
+    []
+  );
+
   // Fetch events from the backend
   useEffect(() => {
-  async function fetchEvents() {
-    try {
-      const data = await getAllEvents();
-      console.log("Fetched events:", data);
-      
-      const formattedEvents = data.map(event => ({
-        ...event,
-        id: event.id.toString(),
-        title: event.title || "Untitled Event",
-        start: event.start,
-        end: event.end,
-        description: event.description || ""
-      }));
+    async function fetchEvents() {
+      try {
+        const data = await getAllEvents();
+        console.log("Fetched events:", data);
+        
+        const formattedEvents = data.map(event => ({
+          ...event,
+          id: event.id.toString(),
+          title: event.title || "Untitled Event",
+          start: event.start,
+          end: event.end,
+          description: event.description || ""
+        }));
 
-      // Set events into state and directly into plugin
-      setEvents(formattedEvents);
-      eventsServicePlugin.set(formattedEvents); // ← THIS is the key line
+        // Set events into state and directly into plugin
+        setEvents(formattedEvents);
+        eventsServicePlugin.set(formattedEvents);
 
-    } catch (error) {
-      console.error("Error fetching events:", error);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
     }
-  }
 
-  fetchEvents();
-}, []);
+    fetchEvents();
+  }, []);
 
   // Create calendar instance with the events
   const calendar = useCalendarApp({
@@ -60,6 +70,7 @@ function Calendar() {
     plugins: [
       createEventModalPlugin(),
       createDragAndDropPlugin(),
+      createCurrentTimePlugin(),
       eventsServicePlugin,
     ]
   });
@@ -71,12 +82,10 @@ function Calendar() {
     }
   }, [calendar]);
 
-  // Effect that runs whenever events are updated
-  useEffect(() => {
-    // Note: This specific line is not needed since we're already passing events to useCalendarApp
-    // This is just here for reference on how to update events if needed in the future
-    console.log("Events updated, calendar will re-render");
-  }, [events]);
+  // // Effect that runs whenever events are updated
+  // useEffect(() => {
+  //   console.log("Events updated, calendar will re-render");
+  // }, [events]);
 
   return (
     <>
@@ -100,9 +109,10 @@ function Calendar() {
           >
             Create Event
           </button>
-        <button 
+          <button 
             onClick={() => setShowDebug(!showDebug)}
             style={{
+              marginLeft: '10px',
               padding: '10px 20px',
               background: '#715B68',
               color: '#fff',
@@ -143,7 +153,9 @@ function Calendar() {
         
         {/* Only render calendar when events are loaded */}
         <div style={{ padding: '0 20px' }}>
-          <ScheduleXCalendar calendarApp={calendar} />
+          <ScheduleXCalendar calendarApp={calendar} customComponents={{
+            eventModal: CustomEventModal
+          }}/>
         </div>
       </div>
     </>

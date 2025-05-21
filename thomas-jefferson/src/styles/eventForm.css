@@ -1,0 +1,122 @@
+/* Enhanced Event Form Styling */
+.event-form {
+  display: grid;
+  gap: 1.2rem;
+  max-width: 420px;
+  margin: 1.5rem auto;
+  padding: 1.8rem;
+  background: #095256;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  font-family: system-ui, sans-serif;
+  color: #fff;
+}
+
+/* Form Groups - provides structure for label + input combinations */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Labels */
+.event-form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 0.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+/* All inputs and textareas */
+.event-form input,
+.event-form textarea {
+  padding: 0.7rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.event-form input:focus,
+.event-form textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Make placeholder text lighter */
+.event-form input::placeholder,
+.event-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Date and time inputs - special styling */
+.event-form input[type="date"],
+.event-form input[type="time"] {
+  color: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+/* Calendar and time picker icons */
+.event-form input[type="date"]::-webkit-calendar-picker-indicator,
+.event-form input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+/* Layout for time inputs row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Textarea styling */
+.event-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Submit button */
+.event-form button {
+  padding: 0.8rem 1rem;
+  margin-top: 0.5rem;
+  background: #715B68;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.event-form button:hover {
+  background: #816879;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.event-form button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .event-form {
+    padding: 1.2rem;
+    margin: 1rem auto;
+    gap: 0.8rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}

@@ -7,6 +7,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import Header from '../components/header';
 
+
 const ClassDashboard = () => {
   const [classes, setClasses] = useState([]);
 

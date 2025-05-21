@@ -12,12 +12,12 @@ const Teachers = () => {
         setTeachers(data);
         //firebase logic
     }
-    const handleEdit = async(id) => {
+    const handleDelete = async(id) => {
         await deleteTeacher(id);
         fetchTeachers();
         //firebase logic
     }
-    const handleDelete = (teacher) => {
+    const handleEdit = (teacher) => {
         console.log("editing", teacher)
         //firebase logic
     }

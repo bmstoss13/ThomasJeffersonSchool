@@ -5,6 +5,7 @@ import Login from "./routes/login";
 import Students from "./routes/students";
 import Teachers from "./routes/teachers";
 import Calendar from "./routes/calendar";
+import CreateEvent from "./routes/createEvent";
 
 export const router = createBrowserRouter([
     { path: "/", element: <App/>},
@@ -13,4 +14,5 @@ export const router = createBrowserRouter([
     { path: "/students", element: <Students/>},
     { path: "/teachers", element: <Teachers/>},
     { path: "/calendar", element: <Calendar/>},
+    { path: "/cevent", element: <CreateEvent/>}
   ]);

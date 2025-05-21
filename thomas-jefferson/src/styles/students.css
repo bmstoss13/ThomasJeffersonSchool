@@ -1,3 +1,18 @@
+body {
+    display: block !important;
+    place-items: initial !important;
+}
+
+#root {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .students-container {
     display: flex;
     flex-direction: column;
@@ -7,7 +22,8 @@
     padding: 0 1rem;
     width: 100%;
     height: auto;
-    max-height: 100vh;
+    min-height: 100vh;
+    position: relative;
 }
 
 .students-title {
@@ -21,6 +37,8 @@
 .students-name {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-top: 100px;
+    position: relative;
+    z-index: 1;
 }
 
 .students-content {
@@ -28,12 +46,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 
 .students-content-inner {
     width: 100%;
     max-width: 900px;
+    position: relative;
 }
 
 .adminButtonsContainer-s {
@@ -41,6 +61,8 @@
     justify-content: flex-end;
     margin-top: 20px;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .adminButton-s {
@@ -52,15 +74,27 @@
     border-radius: 10px;
 }
 
+.adminButton-s:hover{
+    background-color: #0f777c !important;
+}
+
 .search-container {
     width: 100%;
     max-width: 1000px;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .search-input {
     background-color: rgb(225, 225, 225);
     border-radius: 8px;
+}
+
+.no-results {
+    text-align: center;
+    margin: 2rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @media (max-width: 768px) {

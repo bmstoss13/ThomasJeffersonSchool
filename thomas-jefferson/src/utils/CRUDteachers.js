@@ -4,24 +4,64 @@ import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase
 const teacherRef = collection(db, "teachers");
 
 export const getAllTeachers = async () => {
-  const data = await getDocs(teacherRef)
-  const teachers = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-  return teachers.sort((a, b) => {
-    const lastNameComparison = a.last_name.localeCompare(b.last_name)
-    return lastNameComparison !== 0 ? lastNameComparison : a.first_name.localeCompare(b.first_name)
-  })
+
+  try{
+    const data = await getDocs(teacherRef)
+    const teachers = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    return teachers.sort((a, b) => {
+      const lastNameComparison = a.last_name.localeCompare(b.last_name)
+      return lastNameComparison !== 0 ? lastNameComparison : a.first_name.localeCompare(b.first_name)
+    })
+  }
+  catch(e){
+    console.log("There was an error while trying to retrieve all teachers:", e)
+  }
+
+};
+
+export const getTeacher = async (id) => {
+
+  try{
+    const teacherDoc = doc(db, "teachers", id);
+    const snap = await getDoc(teacherDoc);
+    return snap.exists() ? { ...snap.data(), id: snap.id } : null;
+  }
+  catch(e){
+    console.log("There was an error while trying to retrieve teacher:", e)
+  }
+
 };
 
 export const addTeacher = async (teacher) => {
-  return await addDoc(teacherRef, teacher)
+
+  try{
+    return await addDoc(teacherRef, teacher)
+  }
+  catch(e){
+    console.log("There was an error while trying to add teacher:", e)
+  }
+
 };
 
 export const updateTeacher = async (id, updatedInfo) => {
-  const teacherDoc = doc(db, "teachers", id)
-  return await updateDoc(teacherDoc, updatedInfo)
+
+  try{
+    const teacherDoc = doc(db, "teachers", id)
+    return await updateDoc(teacherDoc, updatedInfo)
+  }
+  catch(e){
+    console.log("There was an error while trying to update the teacher's information", e)
+  }
 };
 
 export const deleteTeacher = async (id) => {
-  const teacherDoc = doc(db, "teachers", id)
-  return await deleteDoc(teacherDoc)
+
+  try{
+    const teacherDoc = doc(db, "teachers", id)
+    return await deleteDoc(teacherDoc)
+  }
+  catch(e){
+    console.log("There was an error while trying to delete the teacher's data:", e)
+  }
+
 };

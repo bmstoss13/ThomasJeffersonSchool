@@ -7,8 +7,8 @@ export const getAllTeachers = async () => {
   const data = await getDocs(teacherRef)
   const teachers = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
   return teachers.sort((a, b) => {
-    const lastNameComparison = a.last_name.localeComparison(b.last_name)
-    return lastNameComparison !== 0 ? lastNameComparison : a.first_name.localeComparison(b.first_name)
+    const lastNameComparison = a.last_name.localeCompare(b.last_name)
+    return lastNameComparison !== 0 ? lastNameComparison : a.first_name.localeCompare(b.first_name)
   })
 };
 

@@ -49,11 +49,28 @@ const Students = () => {
     }, []);
     return (
 
-        <div className="students-container">
-            <Header/>
-            <Button className="adminButton" variant="contained" color="success" onClick={() => nav('/students/new')}>+ Add New Student</Button>
-            <div className="students-content">
+        <div className="students-content">
+            <Header />
             <h1 className="students-name">Student Directory</h1>
+
+            <div className="students-content-inner">
+                <div className="adminButtonsContainer-s">
+                    <Button
+                        className="adminButton-s"
+                        variant="contained"
+                        color="success"
+                        onClick={() => nav('/students/new')}
+                    >
+                        +
+                    </Button>
+                </div>
+                <div className="students-content">
+                    <List
+                        items={students}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                    />
+                </div>
             <div className="search-container">
                 <TextField
                     fullWidth
@@ -81,8 +98,10 @@ const Students = () => {
                     <p>No students found matching "{searchTerm}"</p>
                 </div>
             )}
+
             </div>
         </div>
+
     )
 }
 

@@ -8,6 +8,7 @@ import EditStudent    from './routes/EditStudent';
 import Teachers from "./routes/teachers";
 import CreateTeacher from "./routes/CreateTeacher";
 import Calendar from "./routes/calendar";
+import CreateEvent from "./routes/createEvent";
 import ClassDashboard from './components/ClassDashboard';
 
 
@@ -22,7 +23,9 @@ export const router = createBrowserRouter([
   { path: "/teachers", element: <Teachers /> },
   { path: "/teachers/new", element: <CreateTeacher />},
   { path: "/calendar", element: <Calendar /> },
+  { path: "/calendar/cevent", element: <CreateEvent/>}
   
 
 ]);
+
 

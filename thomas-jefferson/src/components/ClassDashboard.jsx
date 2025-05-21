@@ -104,8 +104,8 @@ const ClassDashboard = () => {
                 <TableCell>{c.students}</TableCell>
                 <TableCell>{c.room}</TableCell>
                 <TableCell align="right">
-                  <IconButton color="primary"><EditIcon /></IconButton>
-                  <IconButton color="error"><DeleteIcon /></IconButton>
+                  <IconButton color="black"><EditIcon /></IconButton>
+                  <IconButton color="black"><DeleteIcon /></IconButton>
                 </TableCell>
               </TableRow>
             ))}

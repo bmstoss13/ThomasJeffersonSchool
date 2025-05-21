@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import StudentForm from '../components/StudentForm';
-import { addStudent } from '../utils/CRUDstudents';
+import EventForm from '../components/eventform';
+import { addEvent } from '../utils/CRUDevents';
 
 export default function CreateEvent() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export default function CreateEvent() {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Create New Student</h2>
-      <StudentForm onSubmit={handleCreate} />
+      <h2>Create New Event</h2>
+        <EventForm onSubmit={handleCreate} />
     </div>
   );
 }

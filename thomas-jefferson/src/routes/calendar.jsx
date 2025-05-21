@@ -6,9 +6,12 @@ import '@schedule-x/theme-default/dist/calendar.css'
 import { createEventModalPlugin } from '@schedule-x/event-modal';
 import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop';
 import { useState } from 'react';
+import '../styles/eventForm.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function calendar(){
+    const navigate = useNavigate();
 
     const [events, setEvents] = useState([
         {
@@ -40,10 +43,12 @@ function calendar(){
 
   return(
     <>
-      <div>
+      <div  >
         <Header/>
         <div style={{ marginBottom: '60px' }}> </div> {/* <-- added this for spacing, couldn't think of a better way*/}
-        <button>Create Event</button>
+        <button className= "event-form" onClick={() => navigate('/calendar/cevent')}>
+          Create Event
+        </button>
         <ScheduleXCalendar calendarApp={calendar}/>
         
       </div>

@@ -25,8 +25,8 @@ const ClassDetail = () => {
     <div>
       <Header />
       <Box sx={{ px: 2, pt: 10, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
-        <Typography variant="h5" fontWeight="bold">{classInfo.teacher}’s Class</Typography>
-        <Typography variant="subtitle1" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
+        <Typography variant="h5" fontWeight="bold" color="black">{classInfo.teacher}’s Class</Typography>
+        <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
 
         <Grid container spacing={2} sx={{ my: 2 }}>
           <Grid item xs={12} sm={4}>
@@ -38,7 +38,7 @@ const ClassDetail = () => {
           <Grid item xs={12} sm={4}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Avg. Grade</Typography>
-              <Typography variant="h5">F+</Typography> {/* TODO: calculate avg */}
+              <Typography variant="h5">F+</Typography> 
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -68,7 +68,7 @@ const ClassDetail = () => {
                 {classInfo.students.map((s, i) => (
                     <TableRow key={i}>
                     <TableCell>{s.first_name} {s.last_name}</TableCell>
-                    <TableCell>{s.id || 'N/A'}</TableCell> {/* Use s.id if available */}
+                    <TableCell>{s.id || 'N/A'}</TableCell> 
                     <TableCell>{s.birthday}</TableCell>
                     <TableCell>{s.grade_level}</TableCell>
                     <TableCell align="right">

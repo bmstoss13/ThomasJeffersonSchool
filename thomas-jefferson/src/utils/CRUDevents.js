@@ -1,4 +1,4 @@
-import { db } from "../../firebase"
+import { db } from "../firebase"
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase/firestore"
 
 const eventRef = collection(db, "events");

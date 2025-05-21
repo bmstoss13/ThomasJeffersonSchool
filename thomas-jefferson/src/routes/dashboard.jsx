@@ -21,25 +21,25 @@ const Dashboard = () => {
 
                 <div className="contentContainer">
                     <div className="adminButtonsContainer">
-                        <Button className="adminButton" variant="contained" color="primary" onClick={() => navigate('/students')}>
+                        <Button className="adminButton" variant="contained" onClick={() => navigate('/students')}>
                             Student Directory
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary" onClick={() => navigate('/teachers')}>
+                        <Button className="adminButton" variant="contained" onClick={() => navigate('/teachers')}>
                             Teacher Directory
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary " onClick={() => navigate('/classes')}>
+                        <Button className="adminButton" variant="contained" onClick={() => navigate('/classes')}>
                             Classes Dashboard
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary" onClick={() => navigate('/calendar')}>
+                        <Button className="adminButton" variant="contained" onClick={() => navigate('/calendar')}>
                             School Calendar
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary">
-                            Add New Student
+                        <Button className="adminButton" variant="contained" color="success" onClick={() => navigate('/students/new')}>
+                            + Add New Student
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary">
-                            Add New Teacher
+                        <Button className="adminButton" variant="contained" color="success" onClick={() => navigate('/teachers/new')}>
+                            + Add New Teacher
                         </Button>
-                        <Button className="adminButton" variant="contained" color="primary">
+                        <Button className="adminButton" variant="contained" color="secondary">
                             Admin Tools
                         </Button>
                     </div>

@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Header from '../components/Header';
-import { getClassById } from '../utils/CRUDclasses'; // you'll need to implement this
+import { getClassById } from '../utils/CRUDclasses'; 
 
 const ClassDetail = () => {
   const { id } = useParams();
@@ -65,7 +65,7 @@ const ClassDetail = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-                {students.map((s, i) => (
+                {classInfo.students.map((s, i) => (
                     <TableRow key={i}>
                     <TableCell>{s.first_name} {s.last_name}</TableCell>
                     <TableCell>{s.id || 'N/A'}</TableCell> {/* Use s.id if available */}

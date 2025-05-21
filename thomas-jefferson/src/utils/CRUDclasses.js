@@ -21,17 +21,23 @@ export const getClassById = async (id) => {
     if (!classSnap.exists()) return null;
   
     const classData = classSnap.data();
+
+    const studentRefs = classData.student || [];
   
-    const studentsData = await Promise.all(
-      (classData.students || []).map(async (ref) => {
-        const studentSnap = await getDoc(ref);
-        return { id: studentSnap.id, ...studentSnap.data() };
-      })
-    );
+    const studentDocs = await Promise.all(
+        studentRefs.map(async (ref) => {
+          const studentSnap = await getDoc(ref); // ref is already a DocumentReference
+          if (studentSnap.exists()) {
+            return { id: studentSnap.id, ...studentSnap.data() };
+          } else {
+            return null;
+          }
+        })
+      );
   
     return {
       id: classSnap.id,
       ...classData,
-      students: studentsData,
+      students: studentDocs.filter(s => s !== null),
     };
   };

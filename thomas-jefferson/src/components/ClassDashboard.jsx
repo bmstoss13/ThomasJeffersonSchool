@@ -102,11 +102,13 @@ const ClassDashboard = () => {
           </TableHead>
           <TableBody>
             {classes.map((c) => (
-              <TableRow key={c.id}>
+              <TableRow 
+                key={c.id}
                 component={Link}
                 to={`/class/${c.id}`}
                 hover
-                style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                sx={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+              >
                 <TableCell>{c.teacher}</TableCell>
                 <TableCell>{c.grade}</TableCell>
                 <TableCell>{c.students}</TableCell>

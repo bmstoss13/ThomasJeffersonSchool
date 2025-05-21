@@ -7,14 +7,14 @@
     align-items: center;
     gap: 3rem;
     margin-top: 2rem;
-    padding: 1rem 2rem;
+    padding: 0;
     width: 100vh;
     height: 80vh;
     max-height: 100vh;
 }
 
 .students-title {
-    margin-bottom: 20px;
+    margin-bottom: 48px;
     font-size: 48px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;

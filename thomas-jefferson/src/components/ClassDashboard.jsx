@@ -22,7 +22,8 @@ const ClassDashboard = () => {
   return (
     <div>
       <Header />
-      <Box sx={{ p: 4, pt: 10, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ px: 2, pt: 10, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+  <Box sx={{ maxWidth: '1000px', mx: 'auto', textAlign: 'center' }}></Box>
   {/* Header Row */}
   <Box
     sx={{

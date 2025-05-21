@@ -64,15 +64,6 @@ const Teachers = () => {
                         +
                     </Button>
                 </div>
-
-                <div className="students-content">
-                    <List
-                        items={teachers}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                    />
-                </div>
-
             <div className="search-container">
                 <TextField
                     fullWidth

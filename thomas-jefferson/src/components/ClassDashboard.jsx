@@ -4,8 +4,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';
-import Header from './Header';
+import { db } from '../firebase';
+import Header from './header';
 
 const ClassDashboard = () => {
   const [classes, setClasses] = useState([]);

@@ -1,5 +1,5 @@
 import { db } from "../firebase"
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase/firestore"
+import { collection, getDoc, getDocs, addDoc, updateDoc, deleteDoc, doc,} from "firebase/firestore"
 
 const studentRef = collection(db, "students");
 
@@ -7,6 +7,13 @@ export const getAllStudents = async () => {
   const data = await getDocs(studentRef)
   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 };
+
+export const getStudent = async (id) => {
+  const studentDoc = doc(db, "students", id);
+  const snap = await getDoc(studentDoc);
+  return snap.exists() ? { ...snap.data(), id: snap.id } : null;
+};
+
 
 export const addStudent = async (student) => {
   return await addDoc(studentRef, student)

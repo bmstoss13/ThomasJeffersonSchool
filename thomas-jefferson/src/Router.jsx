@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
   { path: "/teachers", element: <Teachers /> },
   { path: "/teachers/new", element: <CreateTeacher />},
   { path: "/calendar", element: <Calendar /> },
-  { path: "/calendar/cevent", element: <CreateEvent/>}
+  { path: "/calendar/cevent", element: <CreateEvent/>},
+  { path: "/classes", element: <ClassDashboard/>},
   
 
 ]);

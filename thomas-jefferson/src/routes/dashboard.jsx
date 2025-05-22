@@ -13,13 +13,14 @@ const Dashboard = () => {
         <div>
             <Header />
 
+            <div className="imageContainer">
+                <img src={schoolImage} alt="School" className="myImage" />
+            </div>
+
             <div className="dashboardWrapper">
                 <h1>Welcome, Admin!</h1>
-                <div className="imageContainer">
-                    <img src={schoolImage} alt="School" className="myImage" />
-                </div>
-
                 <div className="contentContainer">
+                    {/* <h1>Welcome, Admin!</h1> */}
                     <div className="adminButtonsContainer">
                         <Button className="adminButton" variant="contained" onClick={() => navigate('/students')}>
                             Student Directory
@@ -34,10 +35,10 @@ const Dashboard = () => {
                             School Calendar
                         </Button>
                         <Button className="adminButton" variant="contained" color="success" onClick={() => navigate('/students/new')}>
-                            + Add New Student
+                            Add New Student
                         </Button>
                         <Button className="adminButton" variant="contained" color="success" onClick={() => navigate('/teachers/new')}>
-                            + Add New Teacher
+                            Add New Teacher
                         </Button>
                         <Button className="adminButton" variant="contained" color="secondary">
                             Admin Tools

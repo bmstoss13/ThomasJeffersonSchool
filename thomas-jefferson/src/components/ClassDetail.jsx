@@ -57,7 +57,7 @@ const ClassDetail = () => {
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-          <Button variant="contained" sx={{ backgroundColor: '#095256' }} startIcon={<AddIcon />}>Add</Button>
+          <Button variant="contained" sx={{ backgroundColor: '#715B68' }} startIcon={<AddIcon />} onClick={() => navigate(`/students/new?classId=${id}`)}>Add</Button>
         </Box>
 
         <Paper>

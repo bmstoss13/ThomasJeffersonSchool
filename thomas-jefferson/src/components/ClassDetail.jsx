@@ -14,7 +14,7 @@ import { getTeacher } from '../utils/CRUDteachers';
 
 const ClassDetail = () => {
   const { id } = useParams();
-  const [classInfo, setClassInfo] = useState(null);
+  const [classInfo, setClassInfo] = useState(null); 
   const [teacherInfo, setTeacherInfo] = useState(null);
   const navigate = useNavigate();
 
@@ -35,12 +35,25 @@ const ClassDetail = () => {
   
       const teacher = await getTeacher(teacherId);
       setTeacherInfo(teacher);
+      // console.log(classInfo.students);
     };
   
     fetchTeacher();
   }, [classInfo]);
   
   if (!classInfo) return <div>Loading...</div>;
+
+  const averageGrade = classInfo.students.length > 0 
+  ? (() => {
+      const validGrades = classInfo.students
+        .map(student => student.grade)
+        .filter(grade => grade != null && !isNaN(grade) && grade !== '');
+      
+      return validGrades.length > 0 
+        ? validGrades.reduce((sum, grade) => sum + Number(grade), 0) / validGrades.length
+        : 0;
+    })()
+  : 0;
 
   return (
     <div>
@@ -61,7 +74,7 @@ const ClassDetail = () => {
           <Grid item xs={12} sm={4}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Avg. Grade</Typography>
-              <Typography variant="h5">95</Typography> 
+              <Typography variant="h5">{averageGrade.toFixed(1)} </Typography> 
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>

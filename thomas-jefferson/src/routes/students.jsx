@@ -52,7 +52,7 @@ const Students = () => {
 
         <div className="students-content">
             <Header />
-            <h1 className="students-name">Student Directory</h1>
+            <h3 className="students-name">Student Directory</h3>
 
             <div className="students-content-inner">
                 <div className="adminButtonsContainer-s">

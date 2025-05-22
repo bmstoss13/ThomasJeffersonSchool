@@ -30,9 +30,9 @@ const ClassDetail = () => {
   return (
     <div>
       <Header />
-      <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ mt: 4, px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
-        <Typography variant="h5" fontWeight="bold" color="black">{classInfo.teacher}’s Class</Typography>
+        <Typography variant="h3" fontWeight="bold" color="#095256">{classInfo.teacher}’s Class</Typography>
         <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
 
         <Grid container spacing={2} sx={{ my: 2 }}>
@@ -45,7 +45,7 @@ const ClassDetail = () => {
           <Grid item xs={12} sm={4}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Avg. Grade</Typography>
-              <Typography variant="h5">F+</Typography> 
+              <Typography variant="h5">95</Typography> 
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>

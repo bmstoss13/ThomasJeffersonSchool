@@ -106,7 +106,7 @@ const ClassDetail = () => {
                     <TableCell>{s.first_name} {s.last_name}</TableCell>
                     <TableCell>{s.id || 'N/A'}</TableCell> 
                     <TableCell>{s.birthday}</TableCell>
-                    <TableCell>{s.grade_level}</TableCell>
+                    <TableCell>{s.grade}</TableCell>
                     <TableCell align="right">
                     <IconButton
                       sx={{ color: '#715B68' }}

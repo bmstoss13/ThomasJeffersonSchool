@@ -35,111 +35,113 @@ const ClassDashboard = () => {
   return (
     <div>
       <Header />
-      <Box sx={{ px: 2, pt: 10, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
-  <Box sx={{ maxWidth: '1000px', mx: 'auto', textAlign: 'center' }}></Box>
-  {/* Header Row */}
-  <Box
-    sx={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      mb: 4,
-    }}
-  >
-       <Box sx={{ textAlign: 'left'}}>
-      <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
-      <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
-      <Typography variant="subtitle2" color="black" gutterBottom>Click on each class for detailed overview</Typography>
-    </Box>
+      <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', textAlign: 'center', overflowX: 'hidden' }}>
+        {/* Header Row */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
+            mb: 4,
+          }}
+        >
+            <Box sx={{ textAlign: 'left'}}>
+            <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
+            <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
+            <Typography variant="subtitle2" color="black" gutterBottom>Click on each class for detailed overview</Typography>
+          </Box>
 
-    <Button
-      component={Link}
-      to="/classes/new"
-      variant="contained"
-      sx={{ backgroundColor: '#715B68', color: 'white' }}
-      startIcon={<AddIcon />}
-    >
-      Create
-    </Button>
-  </Box>
+          <Button
+            component={Link}
+            to="/classes/new"
+            variant="contained"
+            sx={{ backgroundColor: '#715B68', color: 'white' }}
+            startIcon={<AddIcon />}
+          >
+            Create
+          </Button>
+        </Box>
+            
+            {/* Summary Boxes */}
+            <Grid container spacing={2} sx={{ my: 4, width: '100%' }}>
+              <Grid item xs={12} sm={4}>
+                <Paper sx={{ p: 2, textAlign: 'center' }}>
+                  <Typography variant="h6">Total Classes</Typography>
+                  <Typography variant="h5">{classes.length}</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Paper sx={{ p: 2, textAlign: 'center' }}>
+                  <Typography variant="h6">Total Teachers</Typography>
+                  <Typography variant="h5">{new Set(classes.map(c => c.teacher)).size}</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Paper sx={{ p: 2, textAlign: 'center' }}>
+                  <Typography variant="h6">Total Students</Typography>
+                  <Typography variant="h5">
+                    {classes.reduce((acc, curr) => acc + (curr.students || 0), 0)}
+                  </Typography>
+                </Paper>
+              </Grid>
+            </Grid>
 
-      {/* Summary Boxes */}
-      <Grid container spacing={2} sx={{ my: 4, width: '100%' }}>
-        <Grid item xs={12} sm={4}>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
-            <Typography variant="h6">Total Classes</Typography>
-            <Typography variant="h5">{classes.length}</Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
-            <Typography variant="h6">Total Teachers</Typography>
-            <Typography variant="h5">{new Set(classes.map(c => c.teacher)).size}</Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
-            <Typography variant="h6">Total Students</Typography>
-            <Typography variant="h5">
-              {classes.reduce((acc, curr) => acc + (curr.students || 0), 0)}
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
 
-
-      {/* Class Table */}
-      <Box sx={{ mt: 4, width: '100%' }}>
-      <Paper sx={{ width: '100%', overflowX: 'auto', mt: 2 }}>
-            <Table sx={{ minWidth: 650 }} aria-label="class table">
-          <TableHead>
-            <TableRow>
-              <TableCell><b>Teacher</b></TableCell>
-              
-              <TableCell><b>Grade</b></TableCell>
-              <TableCell><b>Students</b></TableCell>
-              <TableCell><b>Room #</b></TableCell>
-              <TableCell align="right"><b>Actions</b></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {classes.map((c) => (
-              <TableRow 
-                key={c.id}
-                // component={Link}
-                // to={`/class/${c.id}`}
-                onClick={() => navigate(`/class/${c.id}`)}
-                hover
-                sx={{ cursor: 'pointer' }}
-              >
-                <TableCell>{c.teacher}</TableCell>
-                <TableCell>{c.grade}</TableCell>
-                <TableCell>{c.students}</TableCell>
-                <TableCell>{c.room}</TableCell>
-                <TableCell align="right">
-                <IconButton
-                  sx={{  color: '#715B68' }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`/class/${c.id}/edit`);
-                  }}
-                >
-                  <EditIcon />
-                  </IconButton>
-                  <IconButton sx={{ color: '#715B68'}} onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        </Paper> 
-    </Box>
+            {/* Class Table */}
+            <Box sx={{ mt: 4, width: '100%' }}>
+            <Paper sx={{ width: '100%', overflowX: 'auto'}}>
+                  <Table sx={{ minWidth: 650 }} aria-label="class table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell><b>Teacher</b></TableCell>
+                    
+                    <TableCell><b>Grade</b></TableCell>
+                    <TableCell><b>Students</b></TableCell>
+                    <TableCell><b>Room #</b></TableCell>
+                    <TableCell align="right"><b>Actions</b></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {classes.map((c) => (
+                    <TableRow 
+                      key={c.id}
+                      // component={Link}
+                      // to={`/class/${c.id}`}
+                      onClick={() => navigate(`/class/${c.id}`)}
+                      hover
+                      sx={{ cursor: 'pointer' }}
+                    >
+                      <TableCell>{c.teacher}</TableCell>
+                      <TableCell>{c.grade}</TableCell>
+                      <TableCell>{c.students}</TableCell>
+                      <TableCell>{c.room}</TableCell>
+                      <TableCell align="right">
+                      <IconButton
+                        sx={{  color: '#715B68' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/class/${c.id}/edit`);
+                        }}
+                      >
+                        <EditIcon />
+                        </IconButton>
+                        <IconButton sx={{ color: '#715B68'}} onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              </Paper> 
+          </Box>
+        </Box> {/* closes maxWidth wrapper */}
+    </Box> {/* closes background wrapper */}
     
 
       {/* Pagination Placeholder */}
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
         <Pagination count={3} page={1} />
-      </Box>
       </Box>
     </div>
   );

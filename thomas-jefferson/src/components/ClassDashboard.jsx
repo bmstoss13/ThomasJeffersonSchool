@@ -49,6 +49,11 @@ const fetchTeachers = async () => {
   setTeachers(data);
 };
 
+const extractTeacherId = (teacherPath) => {
+  if (!teacherPath) return null;
+  return teacherPath.split('/').pop();
+};
+
 useEffect(() => {
   fetchClasses();
   fetchTeachers();
@@ -131,16 +136,16 @@ teachers.forEach((t) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {classes.map((c) => (
+                {classes.map((c) => {
+                    const teacherId = extractTeacherId(c.teacher);
+                    return (
                     <TableRow 
                       key={c.id}
-                      // component={Link}
-                      // to={`/class/${c.id}`}
                       onClick={() => navigate(`/class/${c.id}`)}
                       hover
                       sx={{ cursor: 'pointer' }}
                     >
-                      <TableCell>{teacherMap[c.teacher] || 'unknown'}</TableCell>
+                      <TableCell>{teacherMap[teacherId] || 'Unknown Teacher'}</TableCell>
                       <TableCell>{c.grade}</TableCell>
                       <TableCell>{c.studentCount}</TableCell>
                       <TableCell>{c.room}</TableCell>
@@ -157,7 +162,8 @@ teachers.forEach((t) => {
                         <IconButton sx={{ color: '#715B68'}} onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
                       </TableCell>
                     </TableRow>
-                  ))}
+                    );
+                  })}
                 </TableBody>
               </Table>
               </Paper> 
@@ -165,7 +171,6 @@ teachers.forEach((t) => {
         </Box> {/* closes maxWidth wrapper */}
     </Box> {/* closes background wrapper */}
     
-
       {/* Pagination Placeholder */}
       <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
         <Pagination count={3} page={1} />

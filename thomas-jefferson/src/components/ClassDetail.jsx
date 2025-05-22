@@ -24,7 +24,8 @@ const ClassDetail = () => {
   return (
     <div>
       <Header />
-      <Box sx={{ px: 2, pt: 10, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
         <Typography variant="h5" fontWeight="bold" color="black">{classInfo.teacher}’s Class</Typography>
         <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
 
@@ -81,6 +82,7 @@ const ClassDetail = () => {
 
           </Table>
         </Paper>
+      </Box>
 
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
           <Pagination count={3} page={1} />

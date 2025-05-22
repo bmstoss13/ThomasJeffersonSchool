@@ -11,6 +11,7 @@ import EditTeacher from "./routes/EditTeacher";
 import Calendar from "./routes/calendar";
 import CreateEvent from "./routes/createEvent";
 import ClassDashboard from './components/ClassDashboard';
+import ClassDetail from './components/ClassDetail';
 
 
 export const router = createBrowserRouter([

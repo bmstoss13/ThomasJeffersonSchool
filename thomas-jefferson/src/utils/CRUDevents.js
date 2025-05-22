@@ -26,3 +26,19 @@ export const addEvent = async (event) => {
     }
   
 };
+
+export const updateEvent = async (id, updatedInfo) => {
+    try{
+        const eventDoc = doc(db, "events", id)
+        return await updateDoc(eventDoc, updatedInfo)
+    }catch(e){
+        console.log("There was an error: " , e);
+    }  
+};
+
+export const deleteEvent = async (id) => {
+  const eventDoc = doc(db, "events", id)
+  return await deleteDoc(eventDoc)
+};
+
+

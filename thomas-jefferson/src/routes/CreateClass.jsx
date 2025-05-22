@@ -6,10 +6,14 @@ export default function CreateClass() {
   const navigate = useNavigate();
 
   const handleCreate = async (data) => {
-    await addClass(data);
-    navigate('/classes');
-  };
-
+    const classData = {
+      ...data,
+      student: []
+  }
+  
+  await addClass(classData);
+  navigate('/classes');
+};
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Create New Class</h2>

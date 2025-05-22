@@ -47,8 +47,8 @@ const ClassDashboard = () => {
             mb: 4,
           }}
         >
-            <Box sx={{ textAlign: 'left'}}>
-            <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
+            <Box sx={{ width: '100%', textAlign: 'center', mt: 2, mb: 4 }}>
+            <Typography variant="h3" fontWeight="bold" color="#095256" mb={2} mt={2}>Class Dashboard</Typography>
             <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
             <Typography variant="subtitle2" color="black" gutterBottom>Click on each class for detailed overview</Typography>
           </Box>

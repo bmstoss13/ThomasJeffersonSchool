@@ -53,6 +53,8 @@ body {
     font-size: 3.2em;
     position: relative;
     z-index: 1;
+    color: #095256;
+    
 }
 
 .students-content {

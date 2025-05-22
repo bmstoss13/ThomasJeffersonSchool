@@ -126,7 +126,7 @@ const ClassDashboard = () => {
                 >
                   <EditIcon />
                   </IconButton>
-                  <IconButton color="#095256" onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
+                  <IconButton sx={{ color: '#715B68'}} onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}><DeleteIcon /></IconButton>
                 </TableCell>
               </TableRow>
             ))}

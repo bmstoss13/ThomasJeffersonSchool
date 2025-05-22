@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import Header from './Header';
+import Header from './header';
 import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
 import { Link } from 'react-router-dom';
 

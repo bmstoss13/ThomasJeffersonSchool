@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Header from './header';
-import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
+import { getAllClasses, deleteClass, getNoStudents } from '../utils/CRUDclasses';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,13 +14,24 @@ const ClassDashboard = () => {
 
   const fetchClasses = async () => {
     const data = await getAllClasses();
-    setClasses(data);
+    const classesWithStudentCounts = await Promise.all(
+    data.map(async (classItem) => ({
+      ...classItem,
+      studentCount: await handleStudentNum(classItem.id)
+    }))
+  );
+    setClasses(classesWithStudentCounts);
   };
 
   const handleDelete = async (id) => {
     await deleteClass(id);
     fetchClasses();
   };
+
+  const handleStudentNum = async(id) =>{
+    const number = await getNoStudents(id);
+    return number;
+  }
 
   const handleEdit = (cls) => {
     console.log('Editing class:', cls);
@@ -82,7 +93,7 @@ const ClassDashboard = () => {
                 <Paper sx={{ p: 2, textAlign: 'center' }}>
                   <Typography variant="h6">Total Students</Typography>
                   <Typography variant="h5">
-                    {classes.reduce((acc, curr) => acc + (curr.students || 0), 0)}
+                    {classes.reduce((acc, curr) => acc + (curr.studentCount || 0), 0)}
                   </Typography>
                 </Paper>
               </Grid>
@@ -115,7 +126,7 @@ const ClassDashboard = () => {
                     >
                       <TableCell>{c.teacher}</TableCell>
                       <TableCell>{c.grade}</TableCell>
-                      <TableCell>{c.students}</TableCell>
+                      <TableCell>{c.studentCount}</TableCell>
                       <TableCell>{c.room}</TableCell>
                       <TableCell align="right">
                       <IconButton

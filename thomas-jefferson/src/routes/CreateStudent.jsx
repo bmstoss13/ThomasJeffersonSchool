@@ -8,7 +8,7 @@ export default function CreateStudent() {
 
   const handleCreate = async (data) => {
     await addStudent(data);
-    navigate('/students');
+    navigate(-1);
   };
 
   return (

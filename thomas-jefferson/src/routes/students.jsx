@@ -55,7 +55,7 @@ const Students = () => {
             <h3 className="students-name">Student Directory</h3>
 
             <div className="students-content-inner">
-                <div className="adminButtonsContainer-s">
+                {/* <div className="adminButtonsContainer-s">
                     <Button
                         className="adminButton-s"
                         variant="contained"
@@ -64,7 +64,7 @@ const Students = () => {
                     >
                         +
                     </Button>
-                </div>
+                </div> */}
                 <div className="search-container">
                 <TextField
                     fullWidth

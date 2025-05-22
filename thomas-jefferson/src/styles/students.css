@@ -48,11 +48,12 @@ body {
 }
 
 .students-name {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     padding-top: 100px;
     font-size: 3.2em;
     position: relative;
     z-index: 1;
+    color: #095256;
+    
 }
 
 .students-content {

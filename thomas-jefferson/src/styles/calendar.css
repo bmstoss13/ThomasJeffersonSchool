@@ -22,11 +22,13 @@
 }
 
 .calendar-title {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #095256;
   margin-right: 2rem;
   letter-spacing: -0.025em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* Professional button styling */
@@ -44,6 +46,8 @@
   letter-spacing: 0.025em !important;
   position: relative !important;
   overflow: hidden !important;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .create-event-btn:hover {

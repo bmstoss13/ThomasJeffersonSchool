@@ -4,7 +4,6 @@ import { db } from "../firebase";
 export const getAllClasses = async () => {
     const querySnapshot = await getDocs(collection(db, "classes"));
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    
 };
 
 export const deleteClass = async (id) => {
@@ -53,3 +52,16 @@ export const getClassById = async (id) => {
   export const addClass = async (data) => {
     await addDoc(collection(db, "classes"), data);
   };
+
+  export const getNoStudents = async (classId) =>{
+    try{
+      const classRef = doc(db, 'classes', classId);
+    const classSnap = await getDoc(classRef);
+    const classData = classSnap.data();
+    const studentRefs = Array.isArray(classData.student) ? classData.student : [];
+    return studentRefs.length
+    }catch(e){
+      console.log("There was an error");
+    }
+    
+  }

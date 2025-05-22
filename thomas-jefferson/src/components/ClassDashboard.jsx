@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Header from './header';
-import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
+import { getAllClasses, deleteClass, getNoStudents } from '../utils/CRUDclasses';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { getAllTeachers } from '../utils/CRUDteachers';
@@ -16,13 +16,24 @@ const ClassDashboard = () => {
 
   const fetchClasses = async () => {
     const data = await getAllClasses();
-    setClasses(data);
+    const classesWithStudentCounts = await Promise.all(
+    data.map(async (classItem) => ({
+      ...classItem,
+      studentCount: await handleStudentNum(classItem.id)
+    }))
+  );
+    setClasses(classesWithStudentCounts);
   };
 
   const handleDelete = async (id) => {
     await deleteClass(id);
     fetchClasses();
   };
+
+  const handleStudentNum = async(id) =>{
+    const number = await getNoStudents(id);
+    return number;
+  }
 
   const handleEdit = (cls) => {
     console.log('Editing class:', cls);
@@ -63,8 +74,8 @@ teachers.forEach((t) => {
             mb: 4,
           }}
         >
-            <Box sx={{ textAlign: 'left'}}>
-            <Typography variant="h4" fontWeight="bold" color="black" mb={2} mt={2}>Class Dashboard</Typography>
+            <Box sx={{ width: '100%', textAlign: 'center', mt: 2, mb: 4 }}>
+            <Typography variant="h3" fontWeight="bold" color="#095256" mb={2} mt={2}>Class Dashboard</Typography>
             <Typography variant="subtitle1" color="black" gutterBottom>Overview of all classes, teachers, and student counts</Typography>
             <Typography variant="subtitle2" color="black" gutterBottom>Click on each class for detailed overview</Typography>
           </Box>
@@ -98,7 +109,7 @@ teachers.forEach((t) => {
                 <Paper sx={{ p: 2, textAlign: 'center' }}>
                   <Typography variant="h6">Total Students</Typography>
                   <Typography variant="h5">
-                    {classes.reduce((acc, curr) => acc + (curr.students || 0), 0)}
+                    {classes.reduce((acc, curr) => acc + (curr.studentCount || 0), 0)}
                   </Typography>
                 </Paper>
               </Grid>
@@ -131,7 +142,7 @@ teachers.forEach((t) => {
                     >
                       <TableCell>{teacherMap[c.teacher] || 'unknown'}</TableCell>
                       <TableCell>{c.grade}</TableCell>
-                      <TableCell>{c.students}</TableCell>
+                      <TableCell>{c.studentCount}</TableCell>
                       <TableCell>{c.room}</TableCell>
                       <TableCell align="right">
                       <IconButton

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getAllClasses } from '../utils/CRUDteachers';
 import '../styles/StudentForm.css';
 
 export default function TeacherForm({ initialData = {}, onSubmit }) {
@@ -13,21 +14,51 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
     ...initialData,
   });
 
+  const[errors, setErrors] = useState({})
+  const [isLoadingClasses, setIsLoadingClasses] = useState(true)
+  const [classes, setClasses] = useState([])
+
+  useEffect(() => {
+    const loadClasses = async () => {
+      try {
+        const availableClasses = await getAllClasses();
+        setClasses(availableClasses);
+      } 
+      catch(err){
+        console.error('Error loading classes:', err);
+        setErrors(prev => ({ ...prev, general: 'Failed to load available classes' }));
+      } 
+      finally{
+        setIsLoadingClasses(false);
+      }
+    };
+
+    loadClasses();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+
+    setForm((prev) => {
+
+      if (name === 'grade_level') {
+        return { ...prev, grade_level: value, class_id: '' };
+      }
+      return { ...prev, [name]: value };
+    })
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: ''}))
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
-      ...form,
-      class_ids: form.class_ids
-        .split(',')
-        .map((id) => id.trim())
-        .filter(Boolean),
-    });
+    onSubmit(form);
   };
+
+  const filteredClasses = classes.filter(
+    (cls) => String(cls.grade) === String(form.grade_level)
+  )
 
   return (
     <form className="student-form" onSubmit={handleSubmit}>
@@ -37,7 +68,8 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
       <input name="email" placeholder="email" value={form.email} onChange={handleChange} required />
       <input name="phone_number" placeholder="Phone number" value={form.phone_number} onChange={handleChange} required />
       <input name="grade_level" placeholder="Grade level you teach(e.g. 3)" value={form.grade_level} onChange={handleChange} required />
-      <input name="class_ids" placeholder="Class IDs (comma-separated)" value={form.class_ids} onChange={handleChange} />
+      {isLoadingClasses ? (<p>Loading classes...</p>) : (<select name="class_id" value={form.class_id} onChange={handleChange} required disabled={!form.grade_level}><option value=""> {form.grade_level ? '-- Select a class --' : 'Select grade level first'}</option> {filteredClasses.map((cls) => (<option key={cls.id} value={cls.id}>{"ID: "}{cls.class_id}{", Room: "}{cls.room}</option>))}</select>)}
+      {errors.class_id && <p className="error">{errors.class_id}</p>}
       <button type="submit">Save</button>
     </form>
   );

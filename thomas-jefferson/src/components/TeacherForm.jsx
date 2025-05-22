@@ -56,9 +56,9 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
     onSubmit(form);
   };
 
-  const filteredClasses = classes.filter(
-    (cls) => String(cls.grade) === String(form.grade_level)
-  )
+//   const filteredClasses = classes.filter(
+//     (cls) => String(cls.grade) === String(form.grade_level)
+//   )
 
     return (
         <form className="student-form" onSubmit={handleSubmit}>
@@ -87,12 +87,12 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
                 <input id="phone_number" name="phone_number" value={form.phone_number} onChange={handleChange} required />
             </div>
 
-            <div className="form-row">
+            {/* <div className="form-row">
                 <label htmlFor="grade_level">Grade Level:</label>
                 <input id="grade_level" name="grade_level" value={form.grade_level} onChange={handleChange} required />
-            </div>
+            </div> */}
 
-            <div className="form-row">
+            {/* <div className="form-row">
                 <label htmlFor="class_id">Select Class:</label>
                 {isLoadingClasses ? (
                     <p>Loading classes...</p>
@@ -107,7 +107,7 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
                     </select>
                 )}
             </div>
-            {errors.class_id && <p className="error">{errors.class_id}</p>}
+            {errors.class_id && <p className="error">{errors.class_id}</p>} */}
 
         <button type="submit">Save</button>
     </form>

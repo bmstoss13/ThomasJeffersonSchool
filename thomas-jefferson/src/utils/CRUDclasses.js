@@ -37,3 +37,7 @@ export const getClassById = async (id) => {
       students: studentDocs.filter(Boolean),
     };
   };
+
+  export const addClass = async (data) => {
+    await addDoc(collection(db, "classes"), data);
+  };

@@ -53,6 +53,8 @@ const ClassDashboard = () => {
     </Box>
 
     <Button
+      component={Link}
+      to="/classes/new"
       variant="contained"
       sx={{ backgroundColor: '#715B68', color: 'white' }}
       startIcon={<AddIcon />}

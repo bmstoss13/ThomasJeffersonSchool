@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import StudentForm from '../components/StudentForm';
 import { getStudent, updateStudent } from '../utils/CRUDstudents';
+import Header from '../components/header';
 
 export default function EditStudent() {
   const { id } = useParams();
@@ -23,13 +24,17 @@ export default function EditStudent() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <>
+      <Header/>
+      <div style={{ padding: '2rem', marginTop: '11rem'}}>
       <h2>Edit Student</h2>
       {initial ? (
         <StudentForm initialData={initial} onSubmit={handleUpdate} />
       ) : (
         <p>Loading…</p>
       )}
-    </div>
+      </div>
+    </>
+    
   );
 }

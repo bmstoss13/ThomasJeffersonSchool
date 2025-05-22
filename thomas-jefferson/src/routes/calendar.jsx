@@ -8,6 +8,7 @@ import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop';
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 import { createCurrentTimePlugin } from '@schedule-x/current-time'
 import '../styles/eventForm.css';
+import '../styles/calendar.css'; // Import the new CSS file
 import { useNavigate } from 'react-router-dom';
 import { getAllEvents } from '../utils/CRUDevents';
 import EventModal from '../components/EventModal';
@@ -82,83 +83,52 @@ function Calendar() {
     }
   }, [calendar]);
 
-  // // Effect that runs whenever events are updated
-  // useEffect(() => {
-  //   console.log("Events updated, calendar will re-render");
-  // }, [events]);
-
   return (
-    <>
-      <div>
-        <Header/>
-        <div style={{ marginBottom: '60px' }}></div>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-          <button 
-            onClick={() => navigate('/calendar/cevent')}
-            style={{
-              padding: '10px 20px',
-              background: '#095256',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-            }}
-          >
-            Create Event
-          </button>
-          <button 
-            onClick={() => setShowDebug(!showDebug)}
-            style={{
-              marginLeft: '10px',
-              padding: '10px 20px',
-              background: '#715B68',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-            }}
-          >
-            {showDebug ? 'Hide' : 'Show'} Debug Data
-          </button>
+    <div className="calendar-container">
+      <Header/>
+      
+      <div className="calendar-wrapper">
+        {/* Professional header section with centered title and button */}
+        <div className="calendar-header">
+          <h1 className="calendar-title">My Calendar</h1>
+          <div>
+            <button 
+              className="create-event-btn"
+              onClick={() => navigate('/calendar/cevent')}
+            >
+              Create Event
+            </button>
+            {/* Uncomment if you want the debug button */}
+            {/* <button 
+              className="debug-btn"
+              onClick={() => setShowDebug(!showDebug)}
+            >
+              {showDebug ? 'Hide' : 'Show'} Debug Data
+            </button> */}
+          </div>
         </div>
         
         {/* Debug Display */}
         {showDebug && (
-          <div style={{ 
-            margin: '20px auto',
-            padding: '15px', 
-            backgroundColor: '#f5f5f5', 
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            maxWidth: '800px',
-            overflowX: 'auto'
-          }}>
+          <div className="debug-section">
             <h3>Events Data ({events.length} events)</h3>
-            <pre style={{ 
-              backgroundColor: '#222', 
-              color: '#26c95e',
-              padding: '10px',
-              borderRadius: '4px',
-              fontSize: '14px'
-            }}>
+            <pre>
               {JSON.stringify(events, null, 2)}
             </pre>
           </div>
         )}
         
-        {/* Only render calendar when events are loaded */}
-        <div style={{ padding: '0 20px' }}>
-          <ScheduleXCalendar calendarApp={calendar} customComponents={{
-            eventModal: CustomEventModal
-          }}/>
+        {/* Centered calendar content */}
+        <div className="calendar-content">
+          <ScheduleXCalendar 
+            calendarApp={calendar} 
+            customComponents={{
+              eventModal: CustomEventModal
+            }}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

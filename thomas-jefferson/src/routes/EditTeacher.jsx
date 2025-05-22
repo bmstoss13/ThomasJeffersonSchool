@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import TeacherForm from '../components/TeacherForm';
 import { getTeacher, updateTeacher } from '../utils/CRUDteachers';
+import Header from '../components/header';
 
 export default function EditTeacher() {
   const { id } = useParams();
@@ -23,13 +24,17 @@ export default function EditTeacher() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <>
+    <Header/>
+      <div style={{ padding: '2rem', marginTop: '11rem'}}>
       <h2>Edit Teacher</h2>
       {initial ? (
         <TeacherForm initialData={initial} onSubmit={handleUpdate} />
       ) : (
         <p>Loading…</p>
       )}
-    </div>
+      </div>
+    </>
+    
   );
 }

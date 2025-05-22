@@ -7,6 +7,8 @@ import Header from './header';
 import { getAllClasses, deleteClass } from '../utils/CRUDclasses';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { getAllTeachers } from '../utils/CRUDteachers';
+
 
 
 const ClassDashboard = () => {
@@ -28,9 +30,23 @@ const ClassDashboard = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchClasses();
-  }, []);
+
+  const [teachers, setTeachers] = useState([]);
+
+const fetchTeachers = async () => {
+  const data = await getAllTeachers();
+  setTeachers(data);
+};
+
+useEffect(() => {
+  fetchClasses();
+  fetchTeachers();
+}, []);
+
+const teacherMap = {};
+teachers.forEach((t) => {
+  teacherMap[t.id] = `${t.first_name} ${t.last_name}`;
+});
 
   return (
     <div>
@@ -113,7 +129,7 @@ const ClassDashboard = () => {
                       hover
                       sx={{ cursor: 'pointer' }}
                     >
-                      <TableCell>{c.teacher}</TableCell>
+                      <TableCell>{teacherMap[c.teacher] || 'unknown'}</TableCell>
                       <TableCell>{c.grade}</TableCell>
                       <TableCell>{c.students}</TableCell>
                       <TableCell>{c.room}</TableCell>

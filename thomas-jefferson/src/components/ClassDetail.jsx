@@ -8,13 +8,16 @@ import Header from '../components/header';
 import { getClassById } from '../utils/CRUDclasses'; 
 import { useNavigate } from 'react-router-dom';
 import { deleteStudent, updateStudent } from '../utils/CRUDstudents';
+import { getTeacher } from '../utils/CRUDteachers';
 
 
 
 const ClassDetail = () => {
   const { id } = useParams();
   const [classInfo, setClassInfo] = useState(null);
+  const [teacherInfo, setTeacherInfo] = useState(null);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchClass = async () => {
@@ -24,6 +27,18 @@ const ClassDetail = () => {
     fetchClass();
   }, [id]);
 
+  useEffect(() => {
+    const fetchTeacher = async () => {
+      if (!classInfo?.teacher) return;
+      const pathParts = classInfo.teacher.split('/');
+      const teacherId = pathParts[pathParts.length - 1];
+  
+      const teacher = await getTeacher(teacherId);
+      setTeacherInfo(teacher);
+    };
+  
+    fetchTeacher();
+  }, [classInfo]);
   
   if (!classInfo) return <div>Loading...</div>;
 
@@ -32,8 +47,8 @@ const ClassDetail = () => {
       <Header />
       <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
-        <Typography variant="h5" fontWeight="bold" color="black">{classInfo.teacher}’s Class</Typography>
-        <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
+        <Typography variant="h5" fontWeight="bold" color="black">{teacherInfo ? `${teacherInfo.first_name} ${teacherInfo.last_name}` : 'Loading teacher...'}’s Class</Typography>
+        <Typography variant="subtitle1" color="black" gutterBottom>Overview of {teacherInfo ? `${teacherInfo.first_name} ${teacherInfo.last_name}` : 'Loading teacher...'}’s Class</Typography>
 
         <Grid container spacing={2} sx={{ my: 2 }}>
           <Grid item xs={12} sm={4}>

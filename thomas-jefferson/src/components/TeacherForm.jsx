@@ -60,17 +60,57 @@ export default function TeacherForm({ initialData = {}, onSubmit }) {
     (cls) => String(cls.grade) === String(form.grade_level)
   )
 
-  return (
-    <form className="student-form" onSubmit={handleSubmit}>
-      <input name="first_name" placeholder="First name" value={form.first_name} onChange={handleChange} required />
-      <input name="last_name" placeholder="Last name"  value={form.last_name} onChange={handleChange} required />
-      <input type="date" name="birthday" value={form.birthday} onChange={handleChange} required />
-      <input name="email" placeholder="email" value={form.email} onChange={handleChange} required />
-      <input name="phone_number" placeholder="Phone number" value={form.phone_number} onChange={handleChange} required />
-      <input name="grade_level" placeholder="Grade level you teach(e.g. 3)" value={form.grade_level} onChange={handleChange} required />
-      {isLoadingClasses ? (<p>Loading classes...</p>) : (<select name="class_id" value={form.class_id} onChange={handleChange} required disabled={!form.grade_level}><option value=""> {form.grade_level ? '-- Select a class --' : 'Select grade level first'}</option> {filteredClasses.map((cls) => (<option key={cls.id} value={cls.id}>{"ID: "}{cls.class_id}{", Room: "}{cls.room}</option>))}</select>)}
-      {errors.class_id && <p className="error">{errors.class_id}</p>}
-      <button type="submit">Save</button>
+    return (
+        <form className="student-form" onSubmit={handleSubmit}>
+            <div className="form-row">
+                <label htmlFor="first_name">First Name:</label>
+                <input id="first_name" name="first_name" value={form.first_name} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="last_name">Last Name:</label>
+                <input id="last_name" name="last_name" value={form.last_name} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday" value={form.birthday} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="email">Email:</label>
+                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="phone_number">Phone Number:</label>
+                <input id="phone_number" name="phone_number" value={form.phone_number} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="grade_level">Grade Level:</label>
+                <input id="grade_level" name="grade_level" value={form.grade_level} onChange={handleChange} required />
+            </div>
+
+            <div className="form-row">
+                <label htmlFor="class_id">Select Class:</label>
+                {isLoadingClasses ? (
+                    <p>Loading classes...</p>
+                ) : (
+                    <select id="class_id" name="class_id" value={form.class_id} onChange={handleChange} required disabled={!form.grade_level}>
+                        <option value="">{form.grade_level ? '-- Select a class --' : 'Select grade level first'}</option>
+                        {filteredClasses.map((cls) => (
+                            <option key={cls.id} value={cls.id}>
+                                {`ID: ${cls.class_id}, Room: ${cls.room}`}
+                            </option>
+                        ))}
+                    </select>
+                )}
+            </div>
+            {errors.class_id && <p className="error">{errors.class_id}</p>}
+
+        <button type="submit">Save</button>
     </form>
+
   );
 }

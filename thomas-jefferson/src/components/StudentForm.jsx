@@ -7,7 +7,7 @@ export default function StudentForm({ initialData = {}, onSubmit }) {
     first_name: '',
     last_name : '',
     birthday  : '',
-    grade_level: '',
+    grade: '',
     class_id : '',
     ...initialData,
   });
@@ -37,13 +37,8 @@ export default function StudentForm({ initialData = {}, onSubmit }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setForm((prev) => {
+    setForm((prev) => ({ ...prev, [name]: value }));
 
-      if (name === 'grade_level') {
-        return { ...prev, grade_level: value, class_id: '' };
-      }
-      return { ...prev, [name]: value };
-    })
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: ''}))
     }
@@ -54,18 +49,18 @@ export default function StudentForm({ initialData = {}, onSubmit }) {
     onSubmit(form);
   };
 
-  const filteredClasses = classes.filter(
-    (cls) => String(cls.grade) === String(form.grade_level)
-  )
+  // const filteredClasses = classes.filter(
+  //   (cls) => String(cls.grade) === String(form.grade_level)
+  // )
 
   return (
     <form className="student-form" onSubmit={handleSubmit}>
       <input name="first_name" placeholder="First name" value={form.first_name} onChange={handleChange} required />
       <input name="last_name" placeholder="Last name"  value={form.last_name} onChange={handleChange} required />
       <input type="date" name="birthday" value={form.birthday} onChange={handleChange} required />
-      <input name="grade_level" placeholder="Grade level (e.g. 3)" value={form.grade_level} onChange={handleChange} required />
-      {isLoadingClasses ? (<p>Loading classes...</p>) : (<select name="class_id" value={form.class_id} onChange={handleChange} required disabled={!form.grade_level}><option value=""> {form.grade_level ? '-- Select a class --' : 'Select grade level first'}</option> {filteredClasses.map((cls) => (<option key={cls.id} value={cls.id}>{cls.teacher}</option>))}</select>)}
-      {errors.class_id && <p className="error">{errors.class_id}</p>}
+      <input name="grade" placeholder="Grade (e.g. 92)" value={form.grade} onChange={handleChange} required />
+      {/* {isLoadingClasses ? (<p>Loading classes...</p>) : (<select name="class_id" value={form.class_id} onChange={handleChange} required disabled={!form.grade_level}><option value=""> {form.grade_level ? '-- Select a class --' : 'Select grade level first'}</option> {filteredClasses.map((cls) => (<option key={cls.id} value={cls.id}>{cls.teacher}</option>))}</select>)}
+      {errors.class_id && <p className="error">{errors.class_id}</p>} */}
       <button type="submit">Save</button>
     </form>
   );

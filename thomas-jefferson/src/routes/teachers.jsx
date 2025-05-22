@@ -62,7 +62,7 @@ const Teachers = () => {
                         color="success"
                         onClick={() => nav('/teachers/new')}
                     >
-                        +
+                        New Teacher
                     </Button>
                 </div>
             <div className="search-container">

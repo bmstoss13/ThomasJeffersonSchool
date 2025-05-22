@@ -12,7 +12,7 @@ export default function EditTeacher() {
   useEffect(() => {
     getTeacher(id).then((data) => {
       if (data) {
-        data.class_ids = (data.class_ids || []).join(', ');
+        // data.class_ids = (data.class_ids || []).join(', ');
         setInitial(data);
       }
     });

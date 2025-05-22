@@ -1,4 +1,4 @@
-import { collection, getDocs, deleteDoc, doc, updateDoc, getDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, getDoc, addDoc } from "firebase/firestore";
 import { db } from "../firebase"; 
 
 export const getAllClasses = async () => {
@@ -23,6 +23,9 @@ export const getClassById = async (id) => {
     const classData = classSnap.data();
 
     const studentRefs = classData.student || [];
+
+    const { id: _ignore, ...rest } = classData;
+
   
     const studentDocs = await Promise.all(
         studentRefs.map(async (ref) => {
@@ -33,7 +36,7 @@ export const getClassById = async (id) => {
   
     return {
       id: classSnap.id,
-      ...classData,
+      ...rest,
       students: studentDocs.filter(Boolean),
     };
   };

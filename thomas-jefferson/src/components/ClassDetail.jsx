@@ -4,7 +4,7 @@ import { Box, Typography, Grid, Paper, Table, TableHead, TableBody, TableCell, T
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import Header from '../components/Header';
+import Header from '../components/header';
 import { getClassById } from '../utils/CRUDclasses'; 
 
 const ClassDetail = () => {

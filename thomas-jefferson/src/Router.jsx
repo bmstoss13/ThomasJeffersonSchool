@@ -12,6 +12,8 @@ import Calendar from "./routes/calendar";
 import CreateEvent from "./routes/createEvent";
 import ClassDashboard from './components/ClassDashboard';
 import ClassDetail from './components/ClassDetail';
+import CreateClass from "./routes/CreateClass";
+import EditClass from './routes/EditClass';
 
 
 export const router = createBrowserRouter([
@@ -25,12 +27,12 @@ export const router = createBrowserRouter([
   { path: "/teachers", element: <Teachers /> },
   { path: "/teachers/new", element: <CreateTeacher /> },
   { path: "/teachers/:id/edit", element: <EditTeacher /> },
-  { path: "/classes", element: <ClassDashboard /> }, //added classes dashboard
   { path: '/classes', element: <ClassDashboard /> },
   { path: '/class/:id', element: <ClassDetail /> },
   { path: "/calendar", element: <Calendar /> },
-  { path: "/calendar/cevent", element: <CreateEvent /> }
-
+  { path: "/calendar/cevent", element: <CreateEvent /> },
+  { path: "/classes/new", element: <CreateClass /> },
+  { path: "/class/:id/edit", element: <EditClass /> }
 
 ]);
 

@@ -4,12 +4,17 @@ import { Box, Typography, Grid, Paper, Table, TableHead, TableBody, TableCell, T
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import Header from '../components/Header';
+import Header from '../components/header';
 import { getClassById } from '../utils/CRUDclasses'; 
+import { useNavigate } from 'react-router-dom';
+import { deleteStudent, updateStudent } from '../utils/CRUDstudents';
+
+
 
 const ClassDetail = () => {
   const { id } = useParams();
   const [classInfo, setClassInfo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchClass = async () => {
@@ -19,12 +24,14 @@ const ClassDetail = () => {
     fetchClass();
   }, [id]);
 
+  
   if (!classInfo) return <div>Loading...</div>;
 
   return (
     <div>
       <Header />
-      <Box sx={{ px: 2, pt: 10, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
         <Typography variant="h5" fontWeight="bold" color="black">{classInfo.teacher}’s Class</Typography>
         <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
 
@@ -44,13 +51,13 @@ const ClassDetail = () => {
           <Grid item xs={12} sm={4}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Grade</Typography>
-              <Typography variant="h5">{classInfo.grade}st</Typography>
+              <Typography variant="h5">{classInfo.grade}</Typography>
             </Paper>
           </Grid>
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-          <Button variant="contained" sx={{ backgroundColor: '#095256' }} startIcon={<AddIcon />}>Add</Button>
+          <Button variant="contained" sx={{ backgroundColor: '#715B68' }} startIcon={<AddIcon />} onClick={() => navigate(`/students/new?classId=${id}`)}>Add</Button>
         </Box>
 
         <Paper>
@@ -72,15 +79,36 @@ const ClassDetail = () => {
                     <TableCell>{s.birthday}</TableCell>
                     <TableCell>{s.grade_level}</TableCell>
                     <TableCell align="right">
-                        <IconButton><EditIcon /></IconButton>
-                        <IconButton><DeleteIcon /></IconButton>
-                    </TableCell>
+                    <IconButton
+                      sx={{ color: '#715B68' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/students/${s.id}/edit`);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                        sx={{ color: '#715B68' }}
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          await deleteStudent(s.id);
+                          setClassInfo((prev) => ({
+                            ...prev,
+                            students: prev.students.filter((student) => student.id !== s.id),
+                          }));
+                        }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                  </TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
 
           </Table>
         </Paper>
+      </Box>
 
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
           <Pagination count={3} page={1} />

@@ -51,13 +51,7 @@ export default function StudentForm({ initialData = {}, onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
-      ...form,
-      class_ids: form.class_ids
-        .split(',')
-        .map((id) => id.trim())
-        .filter(Boolean),
-    });
+    onSubmit(form);
   };
 
   const filteredClasses = classes.filter(

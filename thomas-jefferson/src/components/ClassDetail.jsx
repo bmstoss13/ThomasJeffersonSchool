@@ -6,10 +6,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Header from '../components/header';
 import { getClassById } from '../utils/CRUDclasses'; 
+import { useNavigate } from 'react-router-dom';
+import { deleteStudent, updateStudent } from '../utils/CRUDstudents';
+
+
 
 const ClassDetail = () => {
   const { id } = useParams();
   const [classInfo, setClassInfo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchClass = async () => {
@@ -19,6 +24,7 @@ const ClassDetail = () => {
     fetchClass();
   }, [id]);
 
+  
   if (!classInfo) return <div>Loading...</div>;
 
   return (
@@ -73,9 +79,29 @@ const ClassDetail = () => {
                     <TableCell>{s.birthday}</TableCell>
                     <TableCell>{s.grade_level}</TableCell>
                     <TableCell align="right">
-                        <IconButton><EditIcon /></IconButton>
-                        <IconButton><DeleteIcon /></IconButton>
-                    </TableCell>
+                    <IconButton
+                      sx={{ color: '#715B68' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/students/${s.id}/edit`);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                        sx={{ color: '#715B68' }}
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          await deleteStudent(s.id);
+                          setClassInfo((prev) => ({
+                            ...prev,
+                            students: prev.students.filter((student) => student.id !== s.id),
+                          }));
+                        }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                  </TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

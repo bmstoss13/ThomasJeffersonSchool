@@ -51,7 +51,7 @@ const ClassDetail = () => {
           <Grid item xs={12} sm={4}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Grade</Typography>
-              <Typography variant="h5">{classInfo.grade}st</Typography>
+              <Typography variant="h5">{classInfo.grade}</Typography>
             </Paper>
           </Grid>
         </Grid>

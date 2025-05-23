@@ -49,7 +49,8 @@
 }
 
 .edit-button:hover {
-    background-color: #2563eb;
+    background-color: #095256;
+    transform: scale(1.1)
 }
   
 .delete-button {

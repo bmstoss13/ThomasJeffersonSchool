@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAllClasses } from '../utils/CRUDstudents';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import '../styles/StudentForm.css';
 
 export default function StudentViewForm({ studentData = {} }) {
@@ -49,34 +51,56 @@ export default function StudentViewForm({ studentData = {} }) {
     const loadTeacher = async (teacherRef) => {
       try {
         setIsLoadingTeacher(true);
+        console.log('Loading teacher with reference:', teacherRef);
 
         let teacherId;
         if (typeof teacherRef === 'string' && teacherRef.includes('/teacher/')) {
-          teacherId = teacherRef.split('/teacher/')[1]
+          teacherId = teacherRef.split('/teacher/')[1];
+          console.log('Extracted teacher ID from path:', teacherId);
         } 
-        else if (typeof teacherRef === 'object' && teacherRef.id) {
+
+        else if (typeof teacherRef === 'object' && teacherRef && teacherRef.id) {
           teacherId = teacherRef.id;
+          console.log('Extracted teacher ID from object:', teacherId);
         } 
+
+        else if (typeof teacherRef === 'string') {
+          teacherId = teacherRef;
+          console.log('Using direct teacher ID:', teacherId);
+        }
         else {
-          teacherId = teacherRef
+          console.log('Unknown teacher reference format:', teacherRef);
+          setTeacher(null);
+          return;
         }
         
         if (teacherId) {
-          const teacherDoc = doc(db, 'teacher', teacherId);
+          console.log('Fetching teacher document with ID:', teacherId);
+          const teacherDoc = doc(db, 'teachers', teacherId);
           const teacherSnap = await getDoc(teacherDoc);
+          
+          console.log('Teacher document exists:', teacherSnap.exists());
           
           if (teacherSnap.exists()) {
             const teacherData = teacherSnap.data();
+            console.log('Teacher data retrieved:', teacherData);
             setTeacher(teacherData);
-          } else {
-            console.log('Teacher document not found');
+          } 
+          else {
+            console.log('Teacher document not found for ID:', teacherId);
             setTeacher(null);
           }
+        } 
+        else {
+          console.log('No valid teacher ID extracted');
+          setTeacher(null);
         }
-      } catch (err) {
+      } 
+      catch (err) {
         console.error('Error loading teacher:', err);
         setTeacher(null);
-      } finally {
+      } 
+      finally {
         setIsLoadingTeacher(false);
       }
     };
@@ -85,11 +109,14 @@ export default function StudentViewForm({ studentData = {} }) {
   }, [student.class_id]);
 
   const getTeacherName = () => {
-    if (isLoadingTeacher){
-      return ('Loading teacher...')
+    console.log('Getting teacher name, current teacher state:', teacher);
+    console.log('Is loading teacher:', isLoadingTeacher);
+    
+    if (isLoadingTeacher) {
+      return 'Loading teacher...';
     } 
     if (teacher && teacher.first_name && teacher.last_name) {
-      return `${teacher.first_name} ${teacher.last_name}`
+      return `${teacher.first_name} ${teacher.last_name}`;
     } 
     else if (teacher && (teacher.first_name || teacher.last_name)) {
       return teacher.first_name || teacher.last_name;
@@ -109,12 +136,12 @@ export default function StudentViewForm({ studentData = {} }) {
 
   return (
     <div className="student-form">
-      <h2>
+      {/* <h2> */}
         {student.first_name || student.last_name 
           ? `${student.first_name} ${student.last_name}`.trim()
           : 'Student Information'
         }
-      </h2>
+      {/* </h2> */}
 
       {error && (
         <div className="error-message">

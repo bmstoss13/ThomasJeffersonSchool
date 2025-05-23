@@ -62,7 +62,7 @@ const ClassDetail = () => {
       <Box sx={{ mt: 4, px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
 
-        <Typography variant="h3" fontWeight="bold" color="black">{teacherInfo ? `${teacherInfo.first_name} ${teacherInfo.last_name}` : 'Loading teacher...'}’s Class</Typography>
+        <Typography variant="h3" fontFamily='Segoe UI' fontWeight="bold" color="#095256">{teacherInfo ? `${teacherInfo.first_name} ${teacherInfo.last_name}` : 'Loading teacher...'}’s Class</Typography>
         <Typography variant="subtitle1" color="black" gutterBottom>Overview of {teacherInfo ? `${teacherInfo.first_name} ${teacherInfo.last_name}` : 'Loading teacher...'}’s Class</Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 0 }}>

@@ -67,7 +67,7 @@ teachers.forEach((t) => {
   return (
     <div>
       <Header />
-      <Box sx={{ px: 2, pt: 14, pb: 5, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
+      <Box sx={{ px: 2, pt: 14, pb: 4, backgroundColor: '#EFD9CE', minHeight: '100vh' }}>
         <Box sx={{ maxWidth: '1200px', mx: 'auto', textAlign: 'center', overflowX: 'hidden' }}>
         {/* Header Row */}
         <Box
@@ -76,7 +76,7 @@ teachers.forEach((t) => {
             justifyContent: 'space-between',
             alignItems: 'flex-start',
             flexWrap: 'wrap',
-            mb: 4,
+            mb: 2,
           }}
         >
             <Box sx={{ width: '100%', textAlign: 'center', mt: 2, mb: 4 }}>

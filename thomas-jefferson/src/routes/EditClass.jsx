@@ -35,12 +35,12 @@ export default function EditClass() {
       .filter(Boolean);
     
     await updateClass(id, updated);
-    navigate('/classes');
+    navigate('-1');
   };
 
   return (
     <>
-      <Header/>
+      <Header />
       <div style={{ padding: '2rem',  marginTop: '11rem' }}>
         <h2>Edit Class</h2>
         {initial ? (

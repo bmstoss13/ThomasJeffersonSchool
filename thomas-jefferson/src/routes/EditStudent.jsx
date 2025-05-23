@@ -23,11 +23,10 @@ export default function EditStudent() {
 
   const handleUpdate = async (updated) => {
     await updateStudent(id, updated);
-    navigate('/students');
+    navigate(-1);
   };
 
   return (
-
     <>
       <Header/>
       <div style={{ padding: '2rem', marginTop: '11rem'}}>

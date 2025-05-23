@@ -50,7 +50,7 @@
 
 .edit-button:hover {
     background-color: #095256;
-    transform: scale(1.1)
+    transform: scale(1.1);
 }
   
 .delete-button {
@@ -65,4 +65,5 @@
   
 .delete-button:hover {
     background-color: #dc2626;
+    transform: scale(1.1);
 }

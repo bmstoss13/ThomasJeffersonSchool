@@ -14,7 +14,7 @@ const List = ({items, onEdit, onDelete}) => {
                         <span className="item-name">{item.last_name}{", "}{item.first_name}</span>
                         <div className="button-container">
                             <InfoIcon className="edit-button" onClick={() => onEdit(item)}></InfoIcon>
-                            {/* <DeleteIcon className="delete-button" onClick={() => onDelete(item.id)}></DeleteIcon> */}
+                            <DeleteIcon className="delete-button" onClick={() => onDelete(item.id)}></DeleteIcon>
                         </div>
                     </li>
                 ))}

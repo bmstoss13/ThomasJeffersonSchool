@@ -145,7 +145,7 @@ teachers.forEach((t) => {
                       hover
                       sx={{ cursor: 'pointer' }}
                     >
-                      <TableCell>{teacherMap[teacherId] || 'Unknown Teacher'}</TableCell>
+                      <TableCell>{teacherMap[teacherId] || 'ATTENTION: Teacher needs to be added'}</TableCell>
                       <TableCell>{c.grade}</TableCell>
                       <TableCell>{c.studentCount}</TableCell>
                       <TableCell>{c.room}</TableCell>

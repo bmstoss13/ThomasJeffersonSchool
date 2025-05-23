@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ClassForm from '../components/ClassForm';
 import { getClassById, updateClass } from '../utils/CRUDclasses';
+import Header from '../components/header';
 
 export default function EditClass() {
   const { id } = useParams();
@@ -38,13 +39,17 @@ export default function EditClass() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Edit Class</h2>
-      {initial ? (
-        <ClassForm initialData={initial} onSubmit={handleUpdate} />
-      ) : (
-        <p>Loading…</p>
-      )}
-    </div>
+    <>
+      <Header/>
+      <div style={{ padding: '2rem',  marginTop: '11rem' }}>
+        <h2>Edit Class</h2>
+        {initial ? (
+          <ClassForm initialData={initial} onSubmit={handleUpdate} />
+        ) : (
+          <p>Loading…</p>
+        )}
+      </div>
+    </>
+    
   );
 }

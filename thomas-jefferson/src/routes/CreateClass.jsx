@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ClassForm from '../components/ClassForm';
 import { addClass } from '../utils/CRUDclasses';
+import Header from '../components/header';
 
 export default function CreateClass() {
   const navigate = useNavigate();
@@ -15,9 +16,13 @@ export default function CreateClass() {
   navigate('/classes');
 };
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Create New Class</h2>
-      <ClassForm onSubmit={handleCreate} />
-    </div>
+    <>
+    <Header/>
+      <div style={{ padding: '2rem',  marginTop: '11rem'}}>
+        <h2>Create New Class</h2>
+        <ClassForm onSubmit={handleCreate} />
+      </div>
+    </>
+    
   );
 }

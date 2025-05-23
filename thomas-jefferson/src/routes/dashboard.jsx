@@ -18,7 +18,7 @@ const Dashboard = () => {
             </div>
 
             <div className="dashboardWrapper">
-                <h1>Welcome, Admin!</h1>
+                <h1 fontFamily="Segoe UI">Welcome, Admin!</h1>
                 <div className="contentContainer">
                     {/* <h1>Welcome, Admin!</h1> */}
                     <div className="adminButtonsContainer">

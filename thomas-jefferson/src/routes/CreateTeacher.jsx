@@ -3,6 +3,7 @@ import TeacherForm from '../components/TeacherForm';
 import { addTeacher } from '../utils/CRUDteachers';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from '@mui/material';
+import Header from '../components/header';
 
 export default function CreateTeacher() {
   const navigate = useNavigate();
@@ -13,7 +14,10 @@ export default function CreateTeacher() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+
+    <>
+    <Header/>
+    <div style={{  padding: '2rem', marginTop: '11rem' }}>
       <div style={{ textAlign: 'left' }}>
         <Button
           startIcon={<ArrowBackIcon />}
@@ -27,5 +31,7 @@ export default function CreateTeacher() {
       <h2>Create New Teacher</h2>
       <TeacherForm onSubmit={handleCreate} />
     </div>
+    </>
+    
   );
 }

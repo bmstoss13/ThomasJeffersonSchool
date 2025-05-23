@@ -6,6 +6,7 @@ import '../styles/students.css'
 import { Button, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search'
 import { useNavigate } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
 
 const Students = () => {
     const [students, setStudents] = useState([])
@@ -24,8 +25,8 @@ const Students = () => {
         fetchStudents();
         //firebase logic
     }
-    const handleEdit = (student) => {
-        nav(`/students/${student.id}/edit`)
+    const handleView = (student) => {
+        nav(`/students/${student.id}/view`)
         console.log("editing", student)
         //firebase logic
     }
@@ -55,7 +56,7 @@ const Students = () => {
             <h3 className="students-name">Student Directory</h3>
 
             <div className="students-content-inner">
-                <div className="adminButtonsContainer-s">
+                {/* <div className="adminButtonsContainer-s">
                     <Button
                         className="adminButton-s"
                         variant="contained"
@@ -64,7 +65,7 @@ const Students = () => {
                     >
                         +
                     </Button>
-                </div>
+                </div> */}
                 <div className="search-container">
                 <TextField
                     fullWidth
@@ -84,7 +85,7 @@ const Students = () => {
             </div>
             <List
                 items={filteredStudents}
-                onEdit={handleEdit}
+                onEdit={handleView}
                 onDelete={handleDelete}
             />
             {filteredStudents.length === 0 && searchTerm && (

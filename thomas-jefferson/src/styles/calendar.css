@@ -1,0 +1,275 @@
+/* Calendar Component Styling */
+.calendar-container {
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); */
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Main calendar wrapper - handles spacing from header */
+.calendar-wrapper {
+  padding-top: 120px; /* Adjust this value based on your header height */
+  padding-bottom: 10px;
+}
+
+/* Calendar header section with professional button placement */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 20px;
+}
+
+.calendar-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #095256;
+  margin-right: 2rem;
+  letter-spacing: -0.025em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Professional button styling */
+.create-event-btn {
+  padding: 12px 24px !important;
+  background: linear-gradient(135deg, #095256 0%, #0c6469 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(9, 82, 86, 0.25) !important;
+  letter-spacing: 0.025em !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.create-event-btn:hover {
+  background: linear-gradient(135deg, #0c6469 0%, #095256 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(9, 82, 86, 0.35) !important;
+}
+
+.create-event-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(9, 82, 86, 0.3) !important;
+}
+
+.create-event-btn::before {
+  content: '+';
+  margin-right: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Debug button styling (if needed) */
+.debug-btn {
+  margin-left: 12px !important;
+  padding: 10px 20px !important;
+  background: linear-gradient(135deg, #715B68 0%, #816879 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 3px 8px rgba(113, 91, 104, 0.25) !important;
+}
+
+.debug-btn:hover {
+  background: linear-gradient(135deg, #816879 0%, #715B68 100%) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Calendar content wrapper - centers the calendar */
+.calendar-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Schedule-X calendar container override */
+.calendar-content .sx-vue-calendar,
+.calendar-content .schedule-x-calendar {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  background: #ffffff !important;
+}
+
+/* Calendar header styling */
+.calendar-content .sx-vue-calendar-header,
+.calendar-content .schedule-x-calendar-header {
+  background: linear-gradient(135deg, #095256 0%, #0c6469 100%) !important;
+  color: #ffffff !important;
+  padding: 16px 24px !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Calendar navigation buttons */
+.calendar-content .sx-vue-calendar-header button,
+.calendar-content .schedule-x-calendar-header button {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.calendar-content .sx-vue-calendar-header button:hover,
+.calendar-content .schedule-x-calendar-header button:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Calendar view buttons styling */
+.calendar-content .sx-vue-calendar-views,
+.calendar-content .schedule-x-calendar-views {
+  background: #f8fafc !important;
+  padding: 12px 24px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.calendar-content .sx-vue-calendar-views button,
+.calendar-content .schedule-x-calendar-views button {
+  background: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #374151 !important;
+  border-radius: 6px !important;
+  padding: 8px 16px !important;
+  margin-right: 8px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.calendar-content .sx-vue-calendar-views button:hover,
+.calendar-content .schedule-x-calendar-views button:hover {
+  background: #f3f4f6 !important;
+  border-color: #9ca3af !important;
+}
+
+.calendar-content .sx-vue-calendar-views button.active,
+.calendar-content .schedule-x-calendar-views button.active {
+  background: #095256 !important;
+  border-color: #095256 !important;
+  color: #ffffff !important;
+}
+
+/* Calendar grid styling */
+.calendar-content .sx-vue-calendar-month-grid,
+.calendar-content .schedule-x-calendar-month-grid {
+  background: #ffffff !important;
+}
+
+/* Calendar events styling */
+.calendar-content .sx-vue-calendar-event,
+.calendar-content .schedule-x-calendar-event {
+  background: linear-gradient(135deg, #715B68 0%, #816879 100%) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  box-shadow: 0 2px 4px rgba(113, 91, 104, 0.3) !important;
+}
+
+.calendar-content .sx-vue-calendar-event:hover,
+.calendar-content .schedule-x-calendar-event:hover {
+  background: linear-gradient(135deg, #816879 0%, #715B68 100%) !important;
+  box-shadow: 0 4px 8px rgba(113, 91, 104, 0.4) !important;
+}
+
+/* Debug section styling */
+.debug-section {
+  margin: 2rem auto;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  max-width: 1200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.debug-section h3 {
+  color: #095256;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.debug-section pre {
+  background: #1a202c !important;
+  color: #68d391 !important;
+  padding: 16px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  overflow-x: auto !important;
+  border: 1px solid #2d3748 !important;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .calendar-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .calendar-title {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .calendar-content {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    padding-top: 70px;
+  }
+  
+  .calendar-title {
+    font-size: 1.5rem;
+  }
+  
+  .create-event-btn {
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .calendar-content {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-wrapper {
+    padding-top: 60px;
+  }
+  
+  .calendar-header {
+    padding: 0 15px;
+  }
+  
+  .calendar-title {
+    font-size: 1.25rem;
+  }
+  
+  .create-event-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}

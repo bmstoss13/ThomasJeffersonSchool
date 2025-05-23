@@ -4,6 +4,8 @@ import TeacherForm from '../components/TeacherForm';
 import { getTeacher, updateTeacher } from '../utils/CRUDteachers';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from '@mui/material';
+import Header from '../components/header';
+
 
 export default function EditTeacher() {
   const { id } = useParams();
@@ -13,7 +15,7 @@ export default function EditTeacher() {
   useEffect(() => {
     getTeacher(id).then((data) => {
       if (data) {
-        data.class_ids = (data.class_ids || []).join(', ');
+        // data.class_ids = (data.class_ids || []).join(', ');
         setInitial(data);
       }
     });
@@ -25,7 +27,9 @@ export default function EditTeacher() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <>
+    <Header/>
+    <div style={{  padding: '2rem', marginTop: '11rem' }}>
       <div style={{ textAlign: 'left' }}>
         <Button
           startIcon={<ArrowBackIcon />}
@@ -42,6 +46,8 @@ export default function EditTeacher() {
       ) : (
         <p>Loading…</p>
       )}
-    </div>
+      </div>
+    </>
+    
   );
 }

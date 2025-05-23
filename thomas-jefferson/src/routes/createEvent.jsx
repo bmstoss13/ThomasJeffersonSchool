@@ -14,7 +14,7 @@ export default function CreateEvent() {
   return (
     <>
       <Header/>
-      <div style={{ padding: '2rem' }}>
+      <div style={{ padding: '2rem',  marginTop: '8rem' }}>
       <h2>Create New Event</h2>
         <EventForm onSubmit={handleCreate} />
       </div>

@@ -19,6 +19,21 @@ export const getAllTeachers = async () => {
 
 };
 
+export const getAllClasses = async () => {
+ 
+    try{
+      const querySnapshot = await getDocs(collection(db, "classes"));
+      const classes = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return classes.sort((a, b) => {
+        const gradeComparison = a.grade - b.grade
+        return gradeComparison !== 0 ? gradeComparison : a.room?.localeCompare(b) || 0;
+      })
+    }
+    catch(e){
+      console.log("There was an error retrieving all classes", e)
+    }
+}
+
 export const getTeacher = async (id) => {
 
   try{

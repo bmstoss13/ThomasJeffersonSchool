@@ -1,12 +1,27 @@
-eventModal.css
 .event-modal {
-  
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+  border-radius: 12px;
+  /* Enhanced shadow with multiple layers for depth */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 16px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   min-width: 300px;
+  /* Add subtle border for extra definition */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  /* Smooth transition for any hover effects */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Optional: Add a subtle hover effect */
+.event-modal:hover {
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
 .event-modal button {
@@ -18,10 +33,15 @@ eventModal.css
   border-radius: 4px !important;
   cursor: pointer !important;
   font-size: 14px !important;
+  /* Add smooth transition for button interactions */
+  transition: all 0.2s ease-in-out !important;
 }
 
 .event-modal button:hover {
   background-color: #084144 !important;
+  /* Add subtle shadow to buttons on hover */
+  box-shadow: 0 2px 8px rgba(8, 65, 68, 0.3) !important;
+  transform: translateY(-1px) !important;
 }
 
 .event-modal input,
@@ -31,6 +51,16 @@ eventModal.css
   margin: 5px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
+  /* Add smooth transitions for form inputs */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Enhanced focus states for inputs */
+.event-modal input:focus,
+.event-modal textarea:focus {
+  outline: none;
+  border-color: #095256;
+  box-shadow: 0 0 0 2px rgba(9, 82, 86, 0.1);
 }
 
 .event-modal label {

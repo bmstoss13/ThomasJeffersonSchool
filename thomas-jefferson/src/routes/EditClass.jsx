@@ -8,14 +8,24 @@ export default function EditClass() {
   const [initial, setInitial] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getClassById(id).then((data) => {
-      if (data) {
-        data.student = (data.student || []).map(ref => ref.id || '').join(', ');
-        setInitial(data);
+ useEffect(() => {
+  getClassById(id).then((data) => {
+    if (data) {
+      // console.log('Raw teacher data:', data.teacher, typeof data.teacher);
+      
+      // Handle both single and double prefix cases
+      if (data.teacher) {
+        // Remove all instances of '/teacher/' from the beginning
+        data.teacher = data.teacher.replace(/^(\/teacher\/)+/, '');
       }
-    });
-  }, [id]);
+      
+      // console.log('Processed teacher ID:', data.teacher);
+      
+      data.student = (data.student || []).map(ref => ref.id || '').join(', ');
+      setInitial(data);
+    }
+  });
+}, [id]);
 
   const handleUpdate = async (updated) => {
     updated.student = (updated.student || '')

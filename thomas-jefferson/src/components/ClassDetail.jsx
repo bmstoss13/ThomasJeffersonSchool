@@ -4,6 +4,7 @@ import { Box, Typography, Grid, Paper, Table, TableHead, TableBody, TableCell, T
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Header from '../components/header';
 import { getClassById } from '../utils/CRUDclasses'; 
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +35,17 @@ const ClassDetail = () => {
       <Box sx={{ maxWidth: '1200px', mx: 'auto', overflowX: 'hidden' }}>
         <Typography variant="h3" fontWeight="bold" color="#095256">{classInfo.teacher}’s Class</Typography>
         <Typography variant="subtitle1" color="black" gutterBottom>Overview of {classInfo.teacher}’s Class</Typography>
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 0 }}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/classes')}
+          sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+          variant="contained"
+        >
+          Back to Classes
+        </Button>
+        </Box>
 
         <Grid container spacing={2} sx={{ my: 2 }}>
           <Grid item xs={12} sm={4}>

@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import TeacherForm from '../components/TeacherForm';
 import { addTeacher } from '../utils/CRUDteachers';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from '@mui/material';
 
 export default function CreateTeacher() {
   const navigate = useNavigate();
@@ -12,6 +14,16 @@ export default function CreateTeacher() {
 
   return (
     <div style={{ padding: '2rem' }}>
+      <div style={{ textAlign: 'left' }}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/teachers')}
+          sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+          variant="contained"
+        >
+          Back to Teachers
+        </Button>
+        </div>
       <h2>Create New Teacher</h2>
       <TeacherForm onSubmit={handleCreate} />
     </div>

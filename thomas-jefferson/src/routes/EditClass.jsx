@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ClassForm from '../components/ClassForm';
 import { getClassById, updateClass } from '../utils/CRUDclasses';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from '@mui/material';
+
 
 export default function EditClass() {
   const { id } = useParams();
@@ -29,6 +32,17 @@ export default function EditClass() {
 
   return (
     <div style={{ padding: '2rem' }}>
+        <div style={{ textAlign: 'left' }}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/classes')}
+          sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+          variant="contained"
+        >
+          Back to Classes
+        </Button>
+        </div>
+        
       <h2>Edit Class</h2>
       {initial ? (
         <ClassForm initialData={initial} onSubmit={handleUpdate} />
@@ -37,4 +51,6 @@ export default function EditClass() {
       )}
     </div>
   );
+
+  
 }

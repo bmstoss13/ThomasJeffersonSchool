@@ -1,10 +1,13 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import StudentForm from '../components/StudentForm';
 import { addStudent } from '../utils/CRUDstudents';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from '@mui/material';
 import Header from '../components/header';
 import { updateClass, getClassById } from '../utils/CRUDclasses';
 import { doc } from 'firebase/firestore';
 import { db } from '../firebase';
+
 
 export default function CreateStudent() {
   const navigate = useNavigate();
@@ -47,13 +50,22 @@ export default function CreateStudent() {
 
   return (
     <>
-      <Header/>
-      {/* i want to center the following student form */}
-      <div style={{ padding: '2rem', marginTop: '11rem'}}>
-        <h2>{classId ? 'Add Student to Class' : 'Create New Student'}</h2>
-        <StudentForm onSubmit={handleCreate} />
-      </div>
+     <Header/>
+    {/* i want to center the following student form */}
+    <div style={{ padding: '2rem', marginTop: '11rem' }}>
+      <div style={{ textAlign: 'left' }}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/students')}
+          sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+          variant="contained"
+        >
+          Back to Students
+        </Button>
+        </div>
+      <h2>Create New Student</h2>
+      <StudentForm onSubmit={handleCreate} />
+    </div>
     </>
-    
   );
 }

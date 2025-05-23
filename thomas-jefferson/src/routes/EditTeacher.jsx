@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import TeacherForm from '../components/TeacherForm';
 import { getTeacher, updateTeacher } from '../utils/CRUDteachers';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from '@mui/material';
 import Header from '../components/header';
+
 
 export default function EditTeacher() {
   const { id } = useParams();
@@ -26,7 +29,17 @@ export default function EditTeacher() {
   return (
     <>
     <Header/>
-      <div style={{ padding: '2rem', marginTop: '11rem'}}>
+    <div style={{  padding: '2rem', marginTop: '11rem' }}>
+      <div style={{ textAlign: 'left' }}>
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/teachers')}
+          sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+          variant="contained"
+        >
+          Back to Teachers
+        </Button>
+        </div>
       <h2>Edit Teacher</h2>
       {initial ? (
         <TeacherForm initialData={initial} onSubmit={handleUpdate} />

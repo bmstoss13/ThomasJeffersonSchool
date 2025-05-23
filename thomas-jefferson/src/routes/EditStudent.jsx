@@ -20,7 +20,7 @@ export default function EditStudent() {
 
   const handleUpdate = async (updated) => {
     await updateStudent(id, updated);
-    navigate('/students');
+    navigate(-1);
   };
 
   return (

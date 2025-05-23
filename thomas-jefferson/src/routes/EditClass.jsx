@@ -28,14 +28,13 @@ export default function EditClass() {
   });
 }, [id]);
 
-  const handleUpdate = async (updated) => {
-    updated.student = (updated.student || '')
-      .split(',')
-      .map((id) => id.trim())
-      .filter(Boolean);
-    
-    await updateClass(id, updated);
-    navigate('-1');
+const handleUpdate = async (data) => {
+    try {
+      await updateClass(id, data);
+      navigate('/classes');
+    } catch (err) {
+      console.error("Failed to update class:", err);
+    }
   };
 
   return (

@@ -49,6 +49,10 @@ h1 {
     margin-bottom: 0;     
 }
 
+h2{
+    color: #095256;
+}
+
 .adminButtonsContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

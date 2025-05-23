@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import StudentViewForm from '../components/StudentViewForm';
 import { getStudent } from '../utils/CRUDstudents';
 import Header from '../components/header';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button } from '@mui/material';
 
 export default function ViewStudent() {
   const { id } = useParams();
@@ -58,7 +60,17 @@ export default function ViewStudent() {
   return (
     <>
       <Header />
-      <div style={{ padding: '2rem', marginTop: '11rem' }}>
+      <div style={{ padding: '2rem', marginTop: '5rem' }}>
+      <div style={{ textAlign: 'left' }}>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            onClick={() => navigate('/students')}
+            sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
+            variant="contained"
+          >
+            Back to Students
+          </Button>
+          </div>
       <h2>View Student</h2>
 
           {student ? (

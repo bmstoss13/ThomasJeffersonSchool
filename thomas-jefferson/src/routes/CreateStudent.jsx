@@ -52,7 +52,7 @@ export default function CreateStudent() {
     <>
      <Header/>
     {/* i want to center the following student form */}
-    <div style={{ padding: '2rem', marginTop: '11rem' }}>
+    <div style={{ padding: '2rem', marginTop: '5rem' }}>
       <div style={{ textAlign: 'left' }}>
         <Button
           startIcon={<ArrowBackIcon />}

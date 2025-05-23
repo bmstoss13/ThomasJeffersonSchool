@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Header from '../components/header';
-import { getClassById } from '../utils/CRUDclasses'; 
+import { getClassById , updateClass} from '../utils/CRUDclasses'; 
 import { useNavigate } from 'react-router-dom';
 import { deleteStudent, updateStudent } from '../utils/CRUDstudents';
 import { getTeacher } from '../utils/CRUDteachers';
@@ -36,11 +36,26 @@ const ClassDetail = () => {
   
       const teacher = await getTeacher(teacherId);
       setTeacherInfo(teacher);
-      // console.log(classInfo.students);
+      console.log(classInfo); 
     };
   
     fetchTeacher();
   }, [classInfo]);
+
+  const removeStudent = async (studentId) => {
+    const updatedClassInfo = {
+      ...classInfo,
+      student: classInfo.student.filter((student) => student !== ("students/" + studentId)),
+      students: classInfo.students.filter((student) => student.id !== studentId),
+    };
+    
+    // Update local state
+    setClassInfo(updatedClassInfo);
+    
+    // Update Firebase with the new data
+    console.log(updatedClassInfo);
+    await updateClass(id, updatedClassInfo);
+  };
   
   if (!classInfo) return <div>Loading...</div>;
 
@@ -133,11 +148,7 @@ const ClassDetail = () => {
                         sx={{ color: '#715B68' }}
                         onClick={async (e) => {
                           e.stopPropagation();
-                          await deleteStudent(s.id);
-                          setClassInfo((prev) => ({
-                            ...prev,
-                            students: prev.students.filter((student) => student.id !== s.id),
-                          }));
+                          removeStudent(s.id);
                         }}
                       >
                         <DeleteIcon />

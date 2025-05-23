@@ -56,7 +56,7 @@ export default function CreateStudent() {
       <div style={{ textAlign: 'left' }}>
         <Button
           startIcon={<ArrowBackIcon />}
-          onClick={() => navigate('/students')}
+          onClick={() => navigate(-1)}
           sx={{ mb: 2, backgroundColor: '#715B68', color: 'white', '&:hover': { backgroundColor: '#095256' } }}
           variant="contained"
         >
